@@ -37,8 +37,8 @@ import org.catrobat.catroid.pocketmusic.PocketMusicActivity;
 import org.catrobat.catroid.pocketmusic.ui.TactScrollRecyclerView;
 import org.catrobat.catroid.pocketmusic.ui.TrackRowView;
 import org.catrobat.catroid.pocketmusic.ui.TrackView;
-import org.catrobat.catroid.uiespresso.util.BaseActivityInstrumentationRule;
 import org.catrobat.catroid.uiespresso.util.UiTestUtils;
+import org.catrobat.catroid.uiespresso.util.rules.BaseActivityInstrumentationRule;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.Before;
@@ -169,8 +169,8 @@ public class PocketMusicActivityTest {
 		assertFalse("Soundinfo not found", soundInfo.isEmpty());
 
 		Intent pocketMusicDataIntent = new Intent();
-		pocketMusicDataIntent.putExtra("FILENAME", soundInfo.get(0).getSoundFileName());
-		pocketMusicDataIntent.putExtra("TITLE", soundInfo.get(0).getTitle());
+		pocketMusicDataIntent.putExtra("FILENAME", soundInfo.get(0).getFileName());
+		pocketMusicDataIntent.putExtra("TITLE", soundInfo.get(0).getName());
 
 		pocketMusicActivityRule.launchActivity(pocketMusicDataIntent);
 		onView(withId(android.R.id.content)).check(matches(isDisplayed()));

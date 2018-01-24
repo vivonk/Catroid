@@ -60,6 +60,8 @@ public interface Brick extends Serializable, Cloneable {
 
 		DRONE_ALTITUDE_LIMIT, DRONE_VERTICAL_SPEED_MAX, DRONE_ROTATION_MAX, DRONE_TILT_ANGLE,
 
+		JUMPING_SUMO_SPEED, JUMPING_SUMO_TIME_TO_DRIVE_IN_SECONDS, JUMPING_SUMO_VOLUME, JUMPING_SUMO_ROTATE,
+
 		PHIRO_SPEED, PHIRO_DURATION_IN_SECONDS, PHIRO_LIGHT_RED, PHIRO_LIGHT_GREEN, PHIRO_LIGHT_BLUE,
 		IF_PHIRO_SENSOR_CONDITION,
 
@@ -111,9 +113,6 @@ public interface Brick extends Serializable, Cloneable {
 	int JUMPING_SUMO = 0x800000;
 
 	List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence);
-
-	//needed for the Sprite#clone()-Method
-	Brick copyBrickForSprite(Sprite sprite);
 
 	View getView(Context context, int brickId, BaseAdapter adapter);
 

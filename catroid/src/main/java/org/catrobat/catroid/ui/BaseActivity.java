@@ -37,6 +37,7 @@ import org.catrobat.catroid.ProjectManager;
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.cast.CastManager;
 import org.catrobat.catroid.ui.dialogs.AboutDialogFragment;
+import org.catrobat.catroid.ui.dialogs.PrivacyPolicyDialogFragment;
 import org.catrobat.catroid.ui.dialogs.TermsOfUseDialogFragment;
 import org.catrobat.catroid.utils.CrashReporter;
 import org.catrobat.catroid.utils.ToastUtil;
@@ -63,6 +64,7 @@ public abstract class BaseActivity extends Activity {
 		}
 	}
 
+	@SuppressWarnings("PMD.DoNotCallGarbageCollectionExplicitly")
 	@Override
 	protected void onDestroy() {
 		// Partly from http://stackoverflow.com/a/5069354
@@ -92,7 +94,7 @@ public abstract class BaseActivity extends Activity {
 		switch (item.getItemId()) {
 			case android.R.id.home:
 				if (returnToProjectsList) {
-					Intent intent = new Intent(this, MyProjectsActivity.class);
+					Intent intent = new Intent(this, ProjectListActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
 				} else if (returnByPressingBackButton) {
@@ -119,6 +121,10 @@ public abstract class BaseActivity extends Activity {
 			case R.id.menu_terms_of_use:
 				TermsOfUseDialogFragment termsOfUseDialog = new TermsOfUseDialogFragment();
 				termsOfUseDialog.show(getFragmentManager(), TermsOfUseDialogFragment.DIALOG_FRAGMENT_TAG);
+				return true;
+			case R.id.menu_privacy_policy:
+				PrivacyPolicyDialogFragment privacyPolicyDialog = new PrivacyPolicyDialogFragment();
+				privacyPolicyDialog.show(getFragmentManager(), PrivacyPolicyDialogFragment.DIALOG_FRAGMENT_TAG);
 				return true;
 			case R.id.menu_about:
 				AboutDialogFragment aboutDialog = new AboutDialogFragment();

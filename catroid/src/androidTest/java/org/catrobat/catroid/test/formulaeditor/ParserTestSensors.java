@@ -23,6 +23,7 @@
 package org.catrobat.catroid.test.formulaeditor;
 
 import android.graphics.Point;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.annotation.UiThreadTest;
 import android.support.test.rule.UiThreadTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -63,7 +64,9 @@ import java.util.List;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class ParserTestSensors {
@@ -205,9 +208,9 @@ public class ParserTestSensors {
 		Reflection.setPrivateField(loudnessSensor, "recorder", simulatedSoundRecorder);
 
 		SensorHandler.startSensorListener(getInstrumentation().getTargetContext());
-		assertEquals("LoudnessSensor dit not start recording, isRecording()", true, simulatedSoundRecorder.isRecording());
+		assertTrue("LoudnessSensor dit not start recording, isRecording()", simulatedSoundRecorder.isRecording());
 		SensorHandler.stopSensorListeners();
-		assertEquals("LoudnessSensor did not stop recording, isRecording()", false, simulatedSoundRecorder.isRecording());
+		assertFalse("LoudnessSensor did not stop recording, isRecording()", simulatedSoundRecorder.isRecording());
 	}
 
 	private Formula createFormulaWithSensor(Sensors sensor) {
@@ -219,7 +222,7 @@ public class ParserTestSensors {
 	}
 
 	private void createProject() {
-		this.project = new Project(null, "testProject");
+		this.project = new Project(InstrumentationRegistry.getTargetContext(), "testProject");
 		firstSprite = new SingleSprite("zwoosh");
 		startScript1 = new StartScript();
 		Brick changeBrick = new ChangeSizeByNBrick(10);

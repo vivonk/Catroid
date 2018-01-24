@@ -29,13 +29,14 @@ import org.catrobat.catroid.camera.CameraManager;
 import org.catrobat.catroid.content.Script;
 import org.catrobat.catroid.content.bricks.CameraBrick;
 import org.catrobat.catroid.content.bricks.ChooseCameraBrick;
-import org.catrobat.catroid.ui.ScriptActivity;
+import org.catrobat.catroid.ui.SpriteActivity;
+import org.catrobat.catroid.uiespresso.annotations.Flaky;
 import org.catrobat.catroid.uiespresso.content.brick.utils.BrickTestUtils;
 import org.catrobat.catroid.uiespresso.stage.utils.ScriptEvaluationGateBrick;
 import org.catrobat.catroid.uiespresso.testsuites.Cat;
 import org.catrobat.catroid.uiespresso.testsuites.Level;
-import org.catrobat.catroid.uiespresso.util.BaseActivityInstrumentationRule;
 import org.catrobat.catroid.uiespresso.util.actions.CustomActions;
+import org.catrobat.catroid.uiespresso.util.rules.BaseActivityInstrumentationRule;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -60,8 +61,8 @@ public class CameraResourceTest {
 	private static final int ON = 1;
 
 	@Rule
-	public BaseActivityInstrumentationRule<ScriptActivity> baseActivityTestRule = new
-			BaseActivityInstrumentationRule<>(ScriptActivity.class, true, false);
+	public BaseActivityInstrumentationRule<SpriteActivity> baseActivityTestRule = new
+			BaseActivityInstrumentationRule<>(SpriteActivity.class, true, false);
 
 	@Before
 	public void setUp() throws Exception {
@@ -130,6 +131,7 @@ public class CameraResourceTest {
 	}
 
 	@Category({Cat.AppUi.class, Level.Functional.class})
+	@Flaky
 	@Test
 	public void cameraFacingFrontTest() {
 		Script script = BrickTestUtils.createProjectAndGetStartScript("cameraFacingFrontTest");
@@ -148,6 +150,7 @@ public class CameraResourceTest {
 	}
 
 	@Category({Cat.AppUi.class, Level.Functional.class})
+	@Flaky
 	@Test
 	public void cameraFacingBackTest() {
 		Script script = BrickTestUtils.createProjectAndGetStartScript("cameraFacingBackTest");

@@ -28,7 +28,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -53,7 +52,6 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 
@@ -115,6 +113,7 @@ public class MainMenuActivity extends BaseCastActivity implements OnLoadProjectC
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		SettingsActivity.setToChosenLanguage(this);
 		if (!Utils.checkForExternalStorageAvailableAndDisplayErrorIfNot(this)) {
 			return;
 		}
@@ -162,12 +161,6 @@ public class MainMenuActivity extends BaseCastActivity implements OnLoadProjectC
 		if (!Utils.checkForExternalStorageAvailableAndDisplayErrorIfNot(this)) {
 			return;
 		}
-		AppEventsLogger.activateApp(this);
-
-		SettingsActivity.setLegoMindstormsNXTSensorChooserEnabled(this, false);
-		SettingsActivity.setLegoMindstormsEV3SensorChooserEnabled(this, false);
-
-		SettingsActivity.setDroneChooserEnabled(this, false);
 
 		if (SettingsActivity.isCastSharedPreferenceEnabled(this)) {
 			CastManager.getInstance().initializeCast(this);
@@ -199,8 +192,6 @@ public class MainMenuActivity extends BaseCastActivity implements OnLoadProjectC
 		if (!Utils.externalStorageAvailable()) {
 			return;
 		}
-
-		AppEventsLogger.deactivateApp(this);
 
 		Project currentProject = ProjectManager.getInstance().getCurrentProject();
 		if (currentProject != null) {
@@ -305,7 +296,7 @@ public class MainMenuActivity extends BaseCastActivity implements OnLoadProjectC
 			Log.d("STANDALONE", "onLoadProjectSucess -> startStage");
 			startStageProject();
 		} else if (ProjectManager.getInstance().getCurrentProject() != null && startProjectActivity) {
-			Intent intent = new Intent(MainMenuActivity.this, ProjectActivity.class);
+			Intent intent = new Intent(this, ProjectActivity.class);
 			startActivity(intent);
 		}
 	}
@@ -323,7 +314,7 @@ public class MainMenuActivity extends BaseCastActivity implements OnLoadProjectC
 		if (!viewSwitchLock.tryLock()) {
 			return;
 		}
-		Intent intent = new Intent(MainMenuActivity.this, MyProjectsActivity.class);
+		Intent intent = new Intent(this, ProjectListActivity.class);
 		startActivity(intent);
 	}
 
@@ -336,7 +327,8 @@ public class MainMenuActivity extends BaseCastActivity implements OnLoadProjectC
 			return;
 		}
 
-		startWebViewActivity(Constants.CATROBAT_HELP_URL);
+		Intent helpUrlIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.CATROBAT_HELP_URL));
+		startActivity(helpUrlIntent);
 	}
 
 	public void handleWebButton(View view) {
@@ -361,7 +353,7 @@ public class MainMenuActivity extends BaseCastActivity implements OnLoadProjectC
 	}
 
 	public void startWebViewActivity(String url) {
-		Intent intent = new Intent(MainMenuActivity.this, WebViewActivity.class);
+		Intent intent = new Intent(this, WebViewActivity.class);
 		intent.putExtra(WebViewActivity.INTENT_PARAMETER_URL, url);
 		startActivity(intent);
 	}
@@ -453,12 +445,10 @@ public class MainMenuActivity extends BaseCastActivity implements OnLoadProjectC
 			if (requestCode == PreStageActivity.REQUEST_RESOURCES_INIT && resultCode == RESULT_OK) {
 				SensorHandler.startSensorListener(this);
 
-				Intent intent = new Intent(MainMenuActivity.this, StageActivity.class);
+				Intent intent = new Intent(this, StageActivity.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-					intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
-				}
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 				startActivityForResult(intent, StageActivity.STAGE_ACTIVITY_FINISH);
 			}
 			if (requestCode == StageActivity.STAGE_ACTIVITY_FINISH) {

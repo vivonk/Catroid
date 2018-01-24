@@ -23,6 +23,7 @@
 
 package org.catrobat.catroid.uiespresso.stage;
 
+import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import junit.framework.Assert;
@@ -44,7 +45,7 @@ import org.catrobat.catroid.formulaeditor.datacontainer.DataContainer;
 import org.catrobat.catroid.stage.StageActivity;
 import org.catrobat.catroid.uiespresso.testsuites.Cat;
 import org.catrobat.catroid.uiespresso.testsuites.Level;
-import org.catrobat.catroid.uiespresso.util.BaseActivityInstrumentationRule;
+import org.catrobat.catroid.uiespresso.util.rules.BaseActivityInstrumentationRule;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -97,7 +98,7 @@ public class BroadcastForClonesRegressionTest {
 	}
 
 	private void createProject() {
-		Project project = new Project(null, "BroadcastForClonesRegressionTest");
+		Project project = new Project(InstrumentationRegistry.getTargetContext(), "BroadcastForClonesRegressionTest");
 		ProjectManager.getInstance().setProject(project);
 		DataContainer dataContainer = project.getDefaultScene().getDataContainer();
 		userVariable = dataContainer.addProjectUserVariable(VARIABLE_NAME);
@@ -113,7 +114,7 @@ public class BroadcastForClonesRegressionTest {
 		broadcastReceiveScript.addBrick(new ChangeVariableBrick(new Formula(1), userVariable));
 		sprite.addScript(broadcastReceiveScript);
 
-		ProjectManager.getInstance().addSprite(sprite);
+		ProjectManager.getInstance().getCurrentScene().addSprite(sprite);
 		ProjectManager.getInstance().setCurrentSprite(sprite);
 	}
 }

@@ -24,6 +24,7 @@
 
 <manifest package="org.catrobat.catroid"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto">
 
     <supports-screens
@@ -84,14 +85,18 @@
     <application
         android:name=".CatroidApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="${appIcon}"
         android:label="${appName}"
         android:theme="@style/Theme.Catroid"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        tools:replace="android:label">
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+
+        <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+            android:value="false"/>
 
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -151,7 +156,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.BackPackActivity"
+            android:name=".ui.recyclerview.backpack.BackpackActivity"
             android:noHistory="true"
 
             android:screenOrientation="portrait"
@@ -169,7 +174,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
         <activity
-            android:name=".drone.DroneStageActivity"
+            android:name=".drone.ardrone.DroneStageActivity"
             android:configChanges="orientation"
             android:label="@string/stage"
             android:screenOrientation="portrait"
@@ -184,17 +189,17 @@
              android:name=".ui.BaseActivity"
              android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.ProgramMenuActivity"
+            android:name=".ui.SpriteAttributesActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.ScriptActivity"
+            android:name=".ui.SpriteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.UserBrickScriptActivity"
+            android:name=".ui.UserBrickSpriteActivity"
 
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.MyProjectsActivity"
+            android:name=".ui.ProjectListActivity"
             android:noHistory="false"
 
             android:screenOrientation="portrait" />
@@ -238,7 +243,6 @@
             android:screenOrientation="portrait"
             android:label="@string/add_sound_music"
             android:icon="@drawable/ic_pocketmusic"/>
-
         <service android:name=".transfers.ProjectUploadService" />
         <service android:name=".transfers.ProjectDownloadService" />
         <service android:name=".transfers.MediaDownloadService" />

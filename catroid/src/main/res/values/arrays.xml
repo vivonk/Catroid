@@ -87,6 +87,9 @@
         <item>@string/ev3_sensor_color_ambient</item>
         <item>@string/ev3_sensor_color_reflected</item>
         <item>@string/ev3_sensor_infrared</item>
+        <item>@string/ev3_sensor_hitechnic_color</item>
+        <item>@string/ev3_sensor_nxt_temperature_c</item>
+        <item>@string/ev3_sensor_nxt_temperature_f</item>
     </string-array>
     <string-array name="ev3_motor_chooser" >
         <item >@string/ev3_motor_a</item >
@@ -163,6 +166,51 @@
  		<item >@string/add_line_break</item >
  		<item >@string/close</item >
  	</string-array >
+
+    <!-- Drone Play LED animation spinner -->
+    <string-array name="brick_drone_play_led_animation_spinner">
+        <item>@string/drone_animation_blinkgreenred</item>
+        <item>@string/drone_animation_blinkgreen</item>
+        <item>@string/drone_animation_blinkred</item>
+        <item>@string/drone_animation_blinkorange</item>
+        <item>@string/drone_animation_snakegreenred</item>
+        <item>@string/drone_animation_fire</item>
+        <item>@string/drone_animation_standard</item>
+        <item>@string/drone_animation_red</item>
+        <item>@string/drone_animation_green</item>
+        <item>@string/drone_animation_redsnake</item>
+        <item>@string/drone_animation_blank</item>
+        <item>@string/drone_animation_rightmissile</item>
+        <item>@string/drone_animation_leftmissile</item>
+        <item>@string/drone_animation_doublemissile</item>
+        <item>@string/drone_animation_frontleftgreenothersred</item>
+        <item>@string/drone_animation_frontrightgreenothersred</item>
+        <item>@string/drone_animation_rearrightgreenothersred</item>
+        <item>@string/drone_animation_rearleftgreenothersred</item>
+        <item>@string/drone_animation_leftgreenrightred</item>
+        <item>@string/drone_animation_leftredrightgreen</item>
+        <item>@string/drone_animation_blinkstandard</item>
+    </string-array>
+
+    <!-- Jumping Sumo animation spinner -->
+    <string-array name="brick_jumping_sumo_select_animation_spinner">
+        <item>@string/animation_spin</item>
+        <item>@string/animation_tab</item>
+        <item>@string/animation_slowshake</item>
+        <item>@string/animation_metronome</item>
+        <item>@string/animation_ondulation</item>
+        <item>@string/animation_spinjump</item>
+        <item>@string/animation_spiral</item>
+        <item>@string/animation_slalom</item>
+    </string-array>
+
+    <!-- Jumping Sumo sound spinner -->
+    <string-array name="brick_jumping_sumo_select_sound_spinner">
+        <item>@string/sound_default</item>
+        <item>@string/sound_robot</item>
+        <item>@string/sound_insect</item>
+        <item>@string/sound_monster</item>
+    </string-array>
 
     <!-- Phiro tone spinner -->
     <string-array name="brick_phiro_select_tone_spinner">

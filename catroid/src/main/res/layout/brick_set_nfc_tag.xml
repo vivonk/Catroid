@@ -47,6 +47,7 @@
 
         <TextView
             android:id="@+id/brick_set_nfc_tag_label"
+            android:labelFor="@+id/brick_set_nfc_tag_edit_text"
             style="@style/BrickText.SingleLine"
             android:text="@string/brick_set_nfc_tag" />
 
@@ -55,7 +56,7 @@
             style="@style/BrickEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:gravity="start"
             android:maxLines="3"
             android:minLines="1"
             app:layout_inputType="text"
@@ -71,6 +72,7 @@
             android:id="@+id/brick_set_nfc_tag_ndef_record_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textDirection="locale"
             android:clickable="false"
             android:focusable="false"
             app:layout_newLine="true" />

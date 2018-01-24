@@ -68,7 +68,7 @@ public class WebViewActivity extends BaseActivity {
 	private static final String PACKAGE_NAME_WHATSAPP = "com.whatsapp";
 
 	private WebView webView;
-	private boolean callMainMenu = false;
+	private boolean allowGoBack = false;
 	private String url;
 	private String callingActivity;
 	private ProgressDialog progressDialog;
@@ -162,7 +162,7 @@ public class WebViewActivity extends BaseActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
-			callMainMenu = false;
+			allowGoBack = false;
 			webView.goBack();
 			return true;
 		}
@@ -172,23 +172,21 @@ public class WebViewActivity extends BaseActivity {
 	private class MyWebViewClient extends WebViewClient {
 		@Override
 		public void onPageStarted(WebView view, String urlClient, Bitmap favicon) {
-			if (webViewLoadingDialog == null) {
+			if (webViewLoadingDialog == null && !allowGoBack) {
 				webViewLoadingDialog = new ProgressDialog(view.getContext(), R.style.WebViewLoadingCircle);
 				webViewLoadingDialog.setCancelable(true);
 				webViewLoadingDialog.setCanceledOnTouchOutside(false);
 				webViewLoadingDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
 				webViewLoadingDialog.show();
-			}
-
-			if (callMainMenu && urlClient.equals(Constants.BASE_URL_HTTPS)) {
-				Intent intent = new Intent(getBaseContext(), MainMenuActivity.class);
-				startActivity(intent);
+			} else if (allowGoBack && urlClient.equals(Constants.BASE_URL_HTTPS)) {
+				allowGoBack = false;
+				onBackPressed();
 			}
 		}
 
 		@Override
 		public void onPageFinished(WebView view, String url) {
-			callMainMenu = true;
+			allowGoBack = true;
 			if (webViewLoadingDialog != null) {
 				webViewLoadingDialog.dismiss();
 				webViewLoadingDialog = null;
@@ -233,7 +231,9 @@ public class WebViewActivity extends BaseActivity {
 		}
 
 		private boolean checkIfWebViewVisitExternalWebsite(String url) {
-			if (url.contains(Constants.BASE_URL_HTTPS) || url.contains(Constants.LIBRARY_BASE_URL)) {
+			// help URL has to be opened in an external browser
+			if ((url.contains(Constants.MAIN_URL_HTTPS) && !url.contains(Constants.CATROBAT_HELP_URL))
+					|| url.contains(Constants.LIBRARY_BASE_URL)) {
 				return false;
 			}
 			return true;
@@ -241,7 +241,7 @@ public class WebViewActivity extends BaseActivity {
 	}
 
 	public void createProgressDialog(String mediaName) {
-		progressDialog = new ProgressDialog(WebViewActivity.this);
+		progressDialog = new ProgressDialog(this);
 
 		progressDialog.setTitle(getString(R.string.notification_download_title_pending) + mediaName);
 		progressDialog.setMessage(getString(R.string.notification_download_pending));
@@ -341,6 +341,7 @@ public class WebViewActivity extends BaseActivity {
 	@Override
 	protected void onDestroy() {
 		webView.setDownloadListener(null);
+		webView.destroy();
 		super.onDestroy();
 	}
 }

@@ -40,13 +40,11 @@ import org.catrobat.catroid.content.bricks.DroneMoveForwardBrick;
 import org.catrobat.catroid.content.bricks.DroneMoveLeftBrick;
 import org.catrobat.catroid.content.bricks.DroneMoveRightBrick;
 import org.catrobat.catroid.content.bricks.DroneMoveUpBrick;
-import org.catrobat.catroid.content.bricks.DronePlayLedAnimationBrick;
 import org.catrobat.catroid.content.bricks.DroneSwitchCameraBrick;
 import org.catrobat.catroid.content.bricks.DroneTakeOffLandBrick;
 import org.catrobat.catroid.content.bricks.DroneTurnLeftBrick;
 import org.catrobat.catroid.content.bricks.DroneTurnRightBrick;
 import org.catrobat.catroid.drone.ardrone.DroneServiceWrapper;
-import org.catrobat.catroid.formulaeditor.Formula;
 import org.mockito.Mockito;
 
 import static org.mockito.Mockito.when;
@@ -59,12 +57,12 @@ public class DroneBricksActionTests extends InstrumentationTestCase {
 	public TemporalAction action;
 	Sprite sprite;
 	SequenceAction sequenceAction;
-	private Formula powerInPercent;
-	private Formula durationInSeconds;
+	private int powerInPercent;
+	private int durationInSeconds;
 
 	public DroneBricksActionTests() {
-		powerInPercent = new Formula(0.2 * 100);
-		durationInSeconds = new Formula(2);
+		powerInPercent = 20;
+		durationInSeconds = 2;
 	}
 
 	@Override
@@ -92,11 +90,6 @@ public class DroneBricksActionTests extends InstrumentationTestCase {
 		Array<Action> actionArray = sequenceAction.getActions();
 		action = (TemporalAction) actionArray.get(0);
 		action.act(actDuration);
-	}
-
-	public void testPlayLedAnimation() {
-		addActionToSequenceAndAct(new DronePlayLedAnimationBrick());
-		Mockito.verify(droneControlService, Mockito.atLeast(1)).playLedAnimation(5.0f, 3, 3);
 	}
 
 	public void testTakeOff() {

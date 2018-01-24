@@ -26,6 +26,8 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 
+import com.parrot.freeflight.drone.DroneProxy.ARDRONE_LED_ANIMATION;
+
 import org.catrobat.catroid.ProjectManager;
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.common.BrickValues;
@@ -58,12 +60,14 @@ import org.catrobat.catroid.content.bricks.ComeToFrontBrick;
 import org.catrobat.catroid.content.bricks.DeleteItemOfUserListBrick;
 import org.catrobat.catroid.content.bricks.DeleteThisCloneBrick;
 import org.catrobat.catroid.content.bricks.DroneEmergencyBrick;
+import org.catrobat.catroid.content.bricks.DroneFlipBrick;
 import org.catrobat.catroid.content.bricks.DroneMoveBackwardBrick;
 import org.catrobat.catroid.content.bricks.DroneMoveDownBrick;
 import org.catrobat.catroid.content.bricks.DroneMoveForwardBrick;
 import org.catrobat.catroid.content.bricks.DroneMoveLeftBrick;
 import org.catrobat.catroid.content.bricks.DroneMoveRightBrick;
 import org.catrobat.catroid.content.bricks.DroneMoveUpBrick;
+import org.catrobat.catroid.content.bricks.DronePlayLedAnimationBrick;
 import org.catrobat.catroid.content.bricks.DroneSwitchCameraBrick;
 import org.catrobat.catroid.content.bricks.DroneTakeOffLandBrick;
 import org.catrobat.catroid.content.bricks.DroneTurnLeftBrick;
@@ -79,6 +83,17 @@ import org.catrobat.catroid.content.bricks.IfLogicBeginBrick;
 import org.catrobat.catroid.content.bricks.IfOnEdgeBounceBrick;
 import org.catrobat.catroid.content.bricks.IfThenLogicBeginBrick;
 import org.catrobat.catroid.content.bricks.InsertItemIntoUserListBrick;
+import org.catrobat.catroid.content.bricks.JumpingSumoAnimationsBrick;
+import org.catrobat.catroid.content.bricks.JumpingSumoJumpHighBrick;
+import org.catrobat.catroid.content.bricks.JumpingSumoJumpLongBrick;
+import org.catrobat.catroid.content.bricks.JumpingSumoMoveBackwardBrick;
+import org.catrobat.catroid.content.bricks.JumpingSumoMoveForwardBrick;
+import org.catrobat.catroid.content.bricks.JumpingSumoNoSoundBrick;
+import org.catrobat.catroid.content.bricks.JumpingSumoRotateLeftBrick;
+import org.catrobat.catroid.content.bricks.JumpingSumoRotateRightBrick;
+import org.catrobat.catroid.content.bricks.JumpingSumoSoundBrick;
+import org.catrobat.catroid.content.bricks.JumpingSumoTakingPictureBrick;
+import org.catrobat.catroid.content.bricks.JumpingSumoTurnBrick;
 import org.catrobat.catroid.content.bricks.LegoEv3MotorMoveBrick;
 import org.catrobat.catroid.content.bricks.LegoEv3MotorStopBrick;
 import org.catrobat.catroid.content.bricks.LegoEv3MotorTurnAngleBrick;
@@ -174,7 +189,7 @@ import org.catrobat.catroid.physics.content.bricks.SetVelocityBrick;
 import org.catrobat.catroid.physics.content.bricks.TurnLeftSpeedBrick;
 import org.catrobat.catroid.physics.content.bricks.TurnRightSpeedBrick;
 import org.catrobat.catroid.ui.SettingsActivity;
-import org.catrobat.catroid.ui.UserBrickScriptActivity;
+import org.catrobat.catroid.ui.UserBrickSpriteActivity;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -185,7 +200,7 @@ public class CategoryBricksFactory {
 
 	public List<Brick> getBricks(String category, Sprite sprite, Context context) {
 
-		boolean isUserScriptMode = context instanceof UserBrickScriptActivity;
+		boolean isUserScriptMode = context instanceof UserBrickSpriteActivity;
 		List<Brick> tempList = new LinkedList<>();
 		List<Brick> toReturn = new ArrayList<>();
 		if (category.equals(context.getString(R.string.category_event))) {
@@ -489,30 +504,37 @@ public class CategoryBricksFactory {
 		List<Brick> droneBrickList = new ArrayList<>();
 		droneBrickList.add(new DroneTakeOffLandBrick());
 		droneBrickList.add(new DroneEmergencyBrick());
-		droneBrickList.add(new DroneMoveUpBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, (int) (BrickValues.DRONE_MOVE_BRICK_DEFAULT_MOVE_POWER_PERCENT * 100)));
-		droneBrickList.add(new DroneMoveDownBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, (int) (BrickValues.DRONE_MOVE_BRICK_DEFAULT_MOVE_POWER_PERCENT * 100)));
-		droneBrickList.add(new DroneMoveLeftBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, (int) (BrickValues.DRONE_MOVE_BRICK_DEFAULT_MOVE_POWER_PERCENT * 100)));
-		droneBrickList.add(new DroneMoveRightBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, (int) (BrickValues.DRONE_MOVE_BRICK_DEFAULT_MOVE_POWER_PERCENT * 100)));
-		droneBrickList.add(new DroneMoveForwardBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, (int) (BrickValues.DRONE_MOVE_BRICK_DEFAULT_MOVE_POWER_PERCENT * 100)));
-		droneBrickList.add(new DroneMoveBackwardBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, (int) (BrickValues.DRONE_MOVE_BRICK_DEFAULT_MOVE_POWER_PERCENT * 100)));
-		droneBrickList.add(new DroneTurnLeftBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, (int) (BrickValues.DRONE_MOVE_BRICK_DEFAULT_MOVE_POWER_PERCENT * 100)));
-		droneBrickList.add(new DroneTurnRightBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, (int) (BrickValues.DRONE_MOVE_BRICK_DEFAULT_MOVE_POWER_PERCENT * 100)));
+		droneBrickList.add(new DroneMoveUpBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, BrickValues.DRONE_MOVE_BRICK_DEFAULT_POWER_PERCENT));
+		droneBrickList.add(new DroneMoveDownBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, BrickValues.DRONE_MOVE_BRICK_DEFAULT_POWER_PERCENT));
+		droneBrickList.add(new DroneMoveLeftBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, BrickValues.DRONE_MOVE_BRICK_DEFAULT_POWER_PERCENT));
+		droneBrickList.add(new DroneMoveRightBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, BrickValues.DRONE_MOVE_BRICK_DEFAULT_POWER_PERCENT));
+		droneBrickList.add(new DroneMoveForwardBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, BrickValues.DRONE_MOVE_BRICK_DEFAULT_POWER_PERCENT));
+		droneBrickList.add(new DroneMoveBackwardBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, BrickValues.DRONE_MOVE_BRICK_DEFAULT_POWER_PERCENT));
+		droneBrickList.add(new DroneTurnLeftBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, BrickValues.DRONE_MOVE_BRICK_DEFAULT_POWER_PERCENT));
+		droneBrickList.add(new DroneTurnRightBrick(BrickValues.DRONE_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, BrickValues.DRONE_MOVE_BRICK_DEFAULT_POWER_PERCENT));
+		droneBrickList.add(new DroneFlipBrick());
+		droneBrickList.add(new DronePlayLedAnimationBrick(ARDRONE_LED_ANIMATION.ARDRONE_LED_ANIMATION_BLINK_GREEN_RED));
 		droneBrickList.add(new DroneSwitchCameraBrick());
-
-		/*
-			 Deprecated
-		     droneBrickList.add(new DroneAdvancedConfigBrick());
-		*/
-
-		// Only for demo purpose
-/*		droneBrickList.add(new SetTextBrick(BrickValues.X_POSITION, BrickValues.Y_POSITION,
-				BrickValues.STRING_VALUE));*/
 
 		return droneBrickList;
 	}
 
 	private List<Brick> setupJumpingSumoCategoryList() {
 		List<Brick> jumpingSumoBrickList = new ArrayList<>();
+		jumpingSumoBrickList.add(new JumpingSumoMoveForwardBrick(BrickValues.JUMPING_SUMO_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, BrickValues
+				.JUMPING_SUMO_MOVE_BRICK_DEFAULT_MOVE_POWER_PERCENT));
+		jumpingSumoBrickList.add(new JumpingSumoMoveBackwardBrick(BrickValues.JUMPING_SUMO_MOVE_BRICK_DEFAULT_TIME_MILLISECONDS, BrickValues
+				.JUMPING_SUMO_MOVE_BRICK_DEFAULT_MOVE_POWER_PERCENT));
+		jumpingSumoBrickList.add(new JumpingSumoAnimationsBrick(JumpingSumoAnimationsBrick.Animation.SPIN));
+		jumpingSumoBrickList.add(new JumpingSumoSoundBrick(JumpingSumoSoundBrick.Sounds.DEFAULT, BrickValues
+				.JUMPING_SUMO_SOUND_BRICK_DEFAULT_VOLUME_PERCENT));
+		jumpingSumoBrickList.add(new JumpingSumoNoSoundBrick());
+		jumpingSumoBrickList.add(new JumpingSumoJumpLongBrick());
+		jumpingSumoBrickList.add(new JumpingSumoJumpHighBrick());
+		jumpingSumoBrickList.add(new JumpingSumoRotateLeftBrick(BrickValues.JUMPING_SUMO_ROTATE_DEFAULT_DEGREE));
+		jumpingSumoBrickList.add(new JumpingSumoRotateRightBrick(BrickValues.JUMPING_SUMO_ROTATE_DEFAULT_DEGREE));
+		jumpingSumoBrickList.add(new JumpingSumoTurnBrick());
+		jumpingSumoBrickList.add(new JumpingSumoTakingPictureBrick());
 
 		return jumpingSumoBrickList;
 	}
@@ -645,6 +667,12 @@ public class CategoryBricksFactory {
 		for (Brick categoryBrick : categoryBricks) {
 			if (brick.getClass().equals(categoryBrick.getClass())) {
 				category = res.getString(R.string.category_drone);
+			}
+		}
+		categoryBricks = setupJumpingSumoCategoryList();
+		for (Brick categoryBrick : categoryBricks) {
+			if (brick.getClass().equals(categoryBrick.getClass())) {
+				category = res.getString(R.string.category_jumping_sumo);
 			}
 		}
 		categoryBricks = setupPhiroProCategoryList();

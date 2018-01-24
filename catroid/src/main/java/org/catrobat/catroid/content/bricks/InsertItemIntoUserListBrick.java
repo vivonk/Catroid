@@ -22,13 +22,8 @@
  */
 package org.catrobat.catroid.content.bricks;
 
-import android.app.Activity;
 import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -44,7 +39,6 @@ import org.catrobat.catroid.formulaeditor.Formula;
 import org.catrobat.catroid.formulaeditor.UserList;
 import org.catrobat.catroid.ui.adapter.DataAdapter;
 import org.catrobat.catroid.ui.adapter.UserListAdapterWrapper;
-import org.catrobat.catroid.ui.dialogs.NewDataDialog;
 import org.catrobat.catroid.ui.fragment.FormulaEditorFragment;
 
 import java.util.List;
@@ -113,44 +107,8 @@ public class InsertItemIntoUserListBrick extends UserListBrick {
 		userListSpinner.setAdapter(userListAdapterWrapper);
 		setSpinnerSelection(userListSpinner, null);
 
-		userListSpinner.setOnTouchListener(new OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View view, MotionEvent event) {
-				if (event.getAction() == MotionEvent.ACTION_DOWN
-						&& (((Spinner) view).getSelectedItemPosition() == 0 && ((Spinner) view).getAdapter().getCount() == 1)) {
-					NewDataDialog dialog = new NewDataDialog((Spinner) view, NewDataDialog.DialogType.USER_LIST);
-					dialog.addUserListDialogListener(InsertItemIntoUserListBrick.this);
-					dialog.show(((Activity) view.getContext()).getFragmentManager(),
-							NewDataDialog.DIALOG_FRAGMENT_TAG);
-					return true;
-				}
-
-				return false;
-			}
-		});
-		userListSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				if (position == 0 && ((UserListAdapterWrapper) parent.getAdapter()).isTouchInDropDownView()) {
-					NewDataDialog dialog = new NewDataDialog((Spinner) parent, NewDataDialog.DialogType.USER_LIST);
-					dialog.addUserListDialogListener(InsertItemIntoUserListBrick.this);
-					int spinnerPos = ((UserListAdapterWrapper) parent.getAdapter())
-							.getPositionOfItem(userList);
-					dialog.setUserVariableIfCancel(spinnerPos);
-					dialog.show(((Activity) view.getContext()).getFragmentManager(),
-							NewDataDialog.DIALOG_FRAGMENT_TAG);
-				}
-				((UserListAdapterWrapper) parent.getAdapter()).resetIsTouchInDropDownView();
-				userList = (UserList) parent.getItemAtPosition(position);
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				userList = null;
-			}
-		});
-
+		userListSpinner.setOnTouchListener(createListSpinnerTouchListener());
+		userListSpinner.setOnItemSelectedListener(createListSpinnerItemSelectedListener());
 		return view;
 	}
 
@@ -197,18 +155,6 @@ public class InsertItemIntoUserListBrick extends UserListBrick {
 				FormulaEditorFragment.showFragment(view, this, BrickField.INSERT_ITEM_INTO_USERLIST_INDEX);
 				break;
 		}
-	}
-
-	@Override
-	public Brick copyBrickForSprite(Sprite sprite) {
-		Scene currentScene = ProjectManager.getInstance().getCurrentScene();
-		if (currentScene == null) {
-			throw new RuntimeException("The current project must be set before cloning it");
-		}
-
-		InsertItemIntoUserListBrick copyBrick = (InsertItemIntoUserListBrick) clone();
-		copyBrick.userList = currentScene.getDataContainer().getUserList(sprite, userList.getName());
-		return copyBrick;
 	}
 
 	@Override

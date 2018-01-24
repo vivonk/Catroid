@@ -22,6 +22,7 @@
  */
 package org.catrobat.catroid.test.content.sprite;
 
+import android.support.test.InstrumentationRegistry;
 import android.test.InstrumentationTestCase;
 
 import com.badlogic.gdx.graphics.Color;
@@ -73,7 +74,7 @@ public class LookTest extends InstrumentationTestCase {
 		assertEquals("Wrong initialization!", 0f, look.getColorInUserInterfaceDimensionUnit());
 		assertEquals("Wrong initialization!", 100f, look.getSizeInUserInterfaceDimensionUnit());
 		assertEquals("Wrong initialization!", 0, look.getZIndex());
-		assertEquals("Wrong initialization!", true, look.isVisible());
+		assertTrue("Wrong initialization!", look.isVisible());
 		assertEquals("Wrong initialization!", Touchable.enabled, look.getTouchable());
 		assertEquals("Wrong initialization!", "", look.getImagePath());
 	}
@@ -81,13 +82,13 @@ public class LookTest extends InstrumentationTestCase {
 	public void testImagePath() {
 		String projectName = "myProject";
 		String fileName = "blubb";
-		project = new Project(null, projectName);
+		project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		project.getDefaultScene().addSprite(sprite);
 		ProjectManager.getInstance().setProject(project);
 
 		LookData lookData = new LookData();
-		lookData.setLookFilename(fileName);
-		lookData.setLookName(fileName);
+		lookData.setFileName(fileName);
+		lookData.setName(fileName);
 		look.setLookData(lookData);
 		assertEquals("Wrong image path!", Constants.DEFAULT_ROOT + "/" + projectName + "/" + project.getDefaultScene().getName() + "/" + Constants.IMAGE_DIRECTORY
 				+ "/" + fileName, look.getImagePath());

@@ -253,6 +253,7 @@ public class StageListener implements ApplicationListener {
 			collisionPolygonDebugRenderer.setAutoShapeType(true);
 			collisionPolygonDebugRenderer.setColor(Color.MAGENTA);
 		}
+		FaceDetectionHandler.resumeFaceDetection();
 	}
 
 	public void cloneSpriteAndAddToStage(Sprite cloneMe) {
@@ -265,8 +266,8 @@ public class StageListener implements ApplicationListener {
 		Map<String, List<String>> scriptActions = new HashMap<>();
 		copy.createStartScriptActionSequenceAndPutToMap(scriptActions);
 		precomputeActionsForBroadcastEvents(scriptActions);
-		if (!copy.getLookDataList().isEmpty()) {
-			copy.look.setLookData(copy.getLookDataList().get(0));
+		if (!copy.getLookList().isEmpty()) {
+			copy.look.setLookData(copy.getLookList().get(0));
 		}
 
 		copy.createWhenClonedAction();
@@ -280,9 +281,7 @@ public class StageListener implements ApplicationListener {
 		Scene currentScene = ProjectManager.getInstance().getSceneToPlay();
 		DataContainer userVariables = currentScene.getDataContainer();
 		userVariables.removeVariableListForSprite(sprite);
-
-		BroadcastHandler.getScriptSpriteMap().remove(sprite);
-
+		BroadcastHandler.removeSpriteFromScriptSpriteMap(sprite);
 		sprite.look.setLookVisible(false);
 		sprite.look.remove();
 		sprites.remove(sprite);
@@ -295,7 +294,7 @@ public class StageListener implements ApplicationListener {
 		for (Sprite sprite : clonedSprites) {
 			userVariables.removeVariableListForSprite(sprite);
 
-			BroadcastHandler.getScriptSpriteMap().remove(sprite);
+			BroadcastHandler.removeSpriteFromScriptSpriteMap(sprite);
 
 			sprite.look.setLookVisible(false);
 			sprite.look.remove();
@@ -450,6 +449,9 @@ public class StageListener implements ApplicationListener {
 		}
 		PhysicsShapeBuilder.getInstance().reset();
 		CameraManager.getInstance().setToDefaultCamera();
+		if (penActor != null) {
+			penActor.dispose();
+		}
 		finished = true;
 	}
 
@@ -464,6 +466,9 @@ public class StageListener implements ApplicationListener {
 		if (reloadProject) {
 			int spriteSize = sprites.size();
 			stage.clear();
+			if (penActor != null) {
+				penActor.dispose();
+			}
 			SoundManager.getInstance().clear();
 
 			physicsWorld = scene.resetPhysicsWorld();
@@ -506,8 +511,8 @@ public class StageListener implements ApplicationListener {
 			for (int currentSprite = 0; currentSprite < spriteSize; currentSprite++) {
 				Sprite sprite = sprites.get(currentSprite);
 				sprite.createStartScriptActionSequenceAndPutToMap(scriptActions);
-				if (!sprite.getLookDataList().isEmpty()) {
-					sprite.look.setLookData(sprite.getLookDataList().get(0));
+				if (!sprite.getLookList().isEmpty()) {
+					sprite.look.setLookData(sprite.getLookList().get(0));
 				}
 			}
 
@@ -701,6 +706,10 @@ public class StageListener implements ApplicationListener {
 		batch.end();
 	}
 
+	public PenActor getPenActor() {
+		return penActor;
+	}
+
 	@Override
 	public void resize(int width, int height) {
 	}
@@ -831,7 +840,7 @@ public class StageListener implements ApplicationListener {
 	private void disposeTextures() {
 		for (Scene scene : project.getSceneList()) {
 			for (Sprite sprite : scene.getSpriteList()) {
-				for (LookData lookData : sprite.getLookDataList()) {
+				for (LookData lookData : sprite.getLookList()) {
 					lookData.dispose();
 				}
 			}

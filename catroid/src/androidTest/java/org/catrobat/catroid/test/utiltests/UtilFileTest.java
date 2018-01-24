@@ -23,6 +23,7 @@
 package org.catrobat.catroid.test.utiltests;
 
 import android.os.Environment;
+import android.support.test.InstrumentationRegistry;
 import android.test.InstrumentationTestCase;
 import android.util.Log;
 
@@ -95,7 +96,7 @@ public class UtilFileTest extends InstrumentationTestCase {
 
 		double expectedSizeInKilobytes = 84.2;
 		assertEquals("Unexpected file size String", String.format(Locale.getDefault(), "%.1f KB", expectedSizeInKilobytes),
-				UtilFile.getSizeAsString(testDirectory));
+				UtilFile.getSizeAsString(testDirectory, getInstrumentation().getTargetContext()));
 
 		for (int i = 2; i < 48; i++) {
 			UtilFile.saveFileToProject("testDirectory", "testScene", i + "testsound.mp3",
@@ -104,7 +105,8 @@ public class UtilFileTest extends InstrumentationTestCase {
 		}
 		DecimalFormat decimalFormat = new DecimalFormat("#.0");
 		String expected = decimalFormat.format(2.0) + " MB";
-		assertEquals("Unexpected file size String", expected, UtilFile.getSizeAsString(testDirectory));
+		assertEquals("Unexpected file size String", expected, UtilFile.getSizeAsString(testDirectory,
+				getInstrumentation().getTargetContext()));
 
 		PrintWriter printWriter = null;
 
@@ -123,13 +125,14 @@ public class UtilFileTest extends InstrumentationTestCase {
 			}
 		}
 
-		assertEquals("Unexpected Filesize!", "7 Byte", UtilFile.getSizeAsString(testFile));
+		assertEquals("Unexpected Filesize!", "7.0 B", UtilFile.getSizeAsString(testFile, getInstrumentation()
+				.getTargetContext()));
 
 		UtilFile.deleteDirectory(testDirectory);
 	}
 
 	public void testGetProjectNames() {
-		Project project = new Project(null, projectName);
+		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		ProjectManager.getInstance().setProject(project);
 		Sprite sprite = new SingleSprite("new sprite");
 		project.getDefaultScene().addSprite(sprite);

@@ -24,6 +24,7 @@
 package org.catrobat.catroid.uiespresso.content.brick.stage;
 
 import android.nfc.NdefMessage;
+import android.support.test.InstrumentationRegistry;
 
 import junit.framework.Assert;
 
@@ -45,8 +46,8 @@ import org.catrobat.catroid.stage.StageActivity;
 import org.catrobat.catroid.uiespresso.content.brick.utils.UiNFCTestUtils;
 import org.catrobat.catroid.uiespresso.testsuites.Cat;
 import org.catrobat.catroid.uiespresso.testsuites.Level;
-import org.catrobat.catroid.uiespresso.util.BaseActivityInstrumentationRule;
 import org.catrobat.catroid.uiespresso.util.UserVariableTestUtils;
+import org.catrobat.catroid.uiespresso.util.rules.BaseActivityInstrumentationRule;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -77,7 +78,7 @@ public class WhenNfcBrickStageTest {
 	private WhenNfcScript scriptUnderTest;
 
 	private WhenNfcScript createProjectWithNfcAndSetVariable() {
-		Project project = new Project(null, "nfcStageTestProject");
+		Project project = new Project(InstrumentationRegistry.getTargetContext(), "nfcStageTestProject");
 
 		DataContainer dataContainer = project.getDefaultScene().getDataContainer();
 		readTagId = dataContainer.addProjectUserVariable(UiNFCTestUtils.READ_TAG_ID);

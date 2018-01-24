@@ -22,8 +22,8 @@
  */
 package org.catrobat.catroid.ui;
 
-import android.annotation.TargetApi;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -43,6 +43,7 @@ import android.util.DisplayMetrics;
 import android.view.MenuItem;
 
 import org.catrobat.catroid.BuildConfig;
+import org.catrobat.catroid.CatroidApplication;
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.common.DroneConfigPreference;
 import org.catrobat.catroid.devices.mindstorms.ev3.sensors.EV3Sensor;
@@ -51,10 +52,12 @@ import org.catrobat.catroid.utils.CrashReporter;
 import org.catrobat.catroid.utils.SnackbarUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
 import static org.catrobat.catroid.CatroidApplication.defaultSystemLanguage;
+import static org.catrobat.catroid.CatroidApplication.getAppContext;
 import static org.catrobat.catroid.common.Constants.DEVICE_LANGUAGE;
 import static org.catrobat.catroid.common.Constants.LANGUAGE_CODE;
 import static org.catrobat.catroid.common.Constants.LANGUAGE_TAG_KEY;
@@ -80,18 +83,24 @@ public class SettingsActivity extends PreferenceActivity {
 			"setting_parrot_jumping_sumo_catrobat_terms_of_service_accepted_permanently";
 	PreferenceScreen screen = null;
 
+	public static final String NXT_SETTINGS_SCREEN = "settings_nxt_screen";
+	public static final String NXT_SETTINGS_CATEGORY = "setting_nxt_category";
 	public static final String NXT_SENSOR_1 = "setting_mindstorms_nxt_sensor_1";
 	public static final String NXT_SENSOR_2 = "setting_mindstorms_nxt_sensor_2";
 	public static final String NXT_SENSOR_3 = "setting_mindstorms_nxt_sensor_3";
 	public static final String NXT_SENSOR_4 = "setting_mindstorms_nxt_sensor_4";
 	public static final String[] NXT_SENSORS = {NXT_SENSOR_1, NXT_SENSOR_2, NXT_SENSOR_3, NXT_SENSOR_4};
 
+	public static final String EV3_SETTINGS_SCREEN = "settings_ev3_screen";
+	public static final String EV3_SETTINGS_CATEGORY = "setting_ev3_category";
 	public static final String EV3_SENSOR_1 = "setting_mindstorms_ev3_sensor_1";
 	public static final String EV3_SENSOR_2 = "setting_mindstorms_ev3_sensor_2";
 	public static final String EV3_SENSOR_3 = "setting_mindstorms_ev3_sensor_3";
 	public static final String EV3_SENSOR_4 = "setting_mindstorms_ev3_sensor_4";
 	public static final String[] EV3_SENSORS = {EV3_SENSOR_1, EV3_SENSOR_2, EV3_SENSOR_3, EV3_SENSOR_4};
 
+	public static final String DRONE_SETTINGS_SCREEN = "settings_drone_screen";
+	public static final String DRONE_SETTINGS_CATEGORY = "setting_drone_category";
 	public static final String DRONE_CONFIGS = "setting_drone_basic_configs";
 	public static final String DRONE_ALTITUDE_LIMIT = "setting_drone_altitude_limit";
 	public static final String DRONE_VERTICAL_SPEED = "setting_drone_vertical_speed";
@@ -110,6 +119,7 @@ public class SettingsActivity extends PreferenceActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setToChosenLanguage(this);
 
 		addPreferencesFromResource(R.xml.preferences);
 
@@ -124,21 +134,27 @@ public class SettingsActivity extends PreferenceActivity {
 		screen = getPreferenceScreen();
 
 		if (!BuildConfig.FEATURE_LEGO_NXT_ENABLED) {
-			PreferenceScreen legoNxtPreference = (PreferenceScreen) findPreference(SETTINGS_MINDSTORMS_NXT_BRICKS_ENABLED);
+			PreferenceScreen legoNxtPreference = (PreferenceScreen) findPreference(NXT_SETTINGS_SCREEN);
 			legoNxtPreference.setEnabled(false);
 			screen.removePreference(legoNxtPreference);
+		} else {
+			setNXTSensors();
 		}
 
 		if (!BuildConfig.FEATURE_LEGO_EV3_ENABLED) {
-			CheckBoxPreference legoEv3Preference = (CheckBoxPreference) findPreference(SETTINGS_MINDSTORMS_EV3_BRICKS_ENABLED);
+			CheckBoxPreference legoEv3Preference = (CheckBoxPreference) findPreference(EV3_SETTINGS_SCREEN);
 			legoEv3Preference.setEnabled(false);
 			screen.removePreference(legoEv3Preference);
+		} else {
+			setEV3Sensors();
 		}
 
 		if (!BuildConfig.FEATURE_PARROT_AR_DRONE_ENABLED) {
-			PreferenceScreen dronePreference = (PreferenceScreen) findPreference(SETTINGS_SHOW_PARROT_AR_DRONE_BRICKS);
+			PreferenceScreen dronePreference = (PreferenceScreen) findPreference(DRONE_SETTINGS_SCREEN);
 			dronePreference.setEnabled(false);
 			screen.removePreference(dronePreference);
+		} else {
+			setDronePreferences();
 		}
 
 		if (!BuildConfig.FEATURE_PARROT_JUMPING_SUMO_ENABLED) {
@@ -231,11 +247,22 @@ public class SettingsActivity extends PreferenceActivity {
 		});
 	}
 
+	@SuppressWarnings("deprecation")
 	private void setDronePreferences() {
+		CheckBoxPreference droneCheckBoxPreference = (CheckBoxPreference) findPreference(SETTINGS_SHOW_PARROT_AR_DRONE_BRICKS);
+		final PreferenceCategory droneConnectionSettings = (PreferenceCategory) findPreference(DRONE_SETTINGS_CATEGORY);
+		droneConnectionSettings.setEnabled(droneCheckBoxPreference.isChecked());
 
-		boolean areChoosersEnabled = getDroneChooserEnabled(this);
+		final String[] dronePreferences = new String[] {DRONE_CONFIGS, DRONE_ALTITUDE_LIMIT, DRONE_VERTICAL_SPEED,
+				DRONE_ROTATION_SPEED, DRONE_TILT_ANGLE};
 
-		final String[] dronePreferences = new String[] {DRONE_CONFIGS, DRONE_ALTITUDE_LIMIT, DRONE_VERTICAL_SPEED, DRONE_ROTATION_SPEED, DRONE_TILT_ANGLE};
+		droneCheckBoxPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+			public boolean onPreferenceChange(Preference preference, Object isChecked) {
+				droneConnectionSettings.setEnabled((Boolean) isChecked);
+				return true;
+			}
+		});
+
 		for (String dronePreference : dronePreferences) {
 			ListPreference listPreference = (ListPreference) findPreference(dronePreference);
 
@@ -249,7 +276,6 @@ public class SettingsActivity extends PreferenceActivity {
 							int index = list.findIndexOfValue(newValue.toString());
 							for (String dronePreference : dronePreferences) {
 								ListPreference listPreference = (ListPreference) findPreference(dronePreference);
-
 								switch (dronePreference) {
 
 									case DRONE_ALTITUDE_LIMIT:
@@ -306,33 +332,50 @@ public class SettingsActivity extends PreferenceActivity {
 					break;
 			}
 			listPreference.setEntryValues(DroneConfigPreference.Preferences.getPreferenceCodes());
-			listPreference.setEnabled(areChoosersEnabled);
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	private void setNXTSensors() {
 
-		boolean areChoosersEnabled = getMindstormsNXTSensorChooserEnabled(this);
+		CheckBoxPreference nxtCheckBoxPreference = (CheckBoxPreference) findPreference(SETTINGS_MINDSTORMS_NXT_BRICKS_ENABLED);
+		final PreferenceCategory nxtConnectionSettings = (PreferenceCategory) findPreference(NXT_SETTINGS_CATEGORY);
+		nxtConnectionSettings.setEnabled(nxtCheckBoxPreference.isChecked());
+
+		nxtCheckBoxPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+			public boolean onPreferenceChange(Preference preference, Object isChecked) {
+				nxtConnectionSettings.setEnabled((Boolean) isChecked);
+				return true;
+			}
+		});
 
 		final String[] sensorPreferences = new String[] {NXT_SENSOR_1, NXT_SENSOR_2, NXT_SENSOR_3, NXT_SENSOR_4};
 		for (int i = 0; i < sensorPreferences.length; ++i) {
 			ListPreference listPreference = (ListPreference) findPreference(sensorPreferences[i]);
-			listPreference.setEntryValues(NXTSensor.Sensor.getSensorCodes());
 			listPreference.setEntries(R.array.nxt_sensor_chooser);
-			listPreference.setEnabled(areChoosersEnabled);
+			listPreference.setEntryValues(NXTSensor.Sensor.getSensorCodes());
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	private void setEV3Sensors() {
 
-		boolean areChoosersEnabled = getMindstormsEV3SensorChooserEnabled(this);
+		CheckBoxPreference ev3CheckBoxPreference = (CheckBoxPreference) findPreference(SETTINGS_MINDSTORMS_EV3_BRICKS_ENABLED);
+		final PreferenceCategory ev3ConnectionSettings = (PreferenceCategory) findPreference(EV3_SETTINGS_CATEGORY);
+		ev3ConnectionSettings.setEnabled(ev3CheckBoxPreference.isChecked());
+
+		ev3CheckBoxPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+			public boolean onPreferenceChange(Preference preference, Object isChecked) {
+				ev3ConnectionSettings.setEnabled((Boolean) isChecked);
+				return true;
+			}
+		});
 
 		final String[] sensorPreferences = new String[] {EV3_SENSOR_1, EV3_SENSOR_2, EV3_SENSOR_3, EV3_SENSOR_4};
 		for (int i = 0; i < sensorPreferences.length; i++) {
 			ListPreference listPreference = (ListPreference) findPreference(sensorPreferences[i]);
-			listPreference.setEntryValues(EV3Sensor.Sensor.getSensorCodes());
 			listPreference.setEntries(R.array.ev3_sensor_chooser);
-			listPreference.setEnabled(areChoosersEnabled);
+			listPreference.setEntryValues(EV3Sensor.Sensor.getSensorCodes());
 		}
 	}
 
@@ -695,18 +738,7 @@ public class SettingsActivity extends PreferenceActivity {
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				String selectedLanguageCode = newValue.toString();
-				if (selectedLanguageCode.equals(DEVICE_LANGUAGE)) {
-					updateLocale(getBaseContext(), defaultSystemLanguage, "");
-					setLanguageSharedPreference(defaultSystemLanguage);
-				} else if (selectedLanguageCode.length() == 2) {
-					updateLocale(getBaseContext(), selectedLanguageCode, "");
-					setLanguageSharedPreference(selectedLanguageCode);
-				} else if (selectedLanguageCode.length() == 6) {
-					String language = selectedLanguageCode.substring(0, 2);
-					String country = selectedLanguageCode.substring(4);
-					updateLocale(getBaseContext(), language, country);
-					setLanguageSharedPreference(selectedLanguageCode);
-				}
+				setLanguageSharedPreference(getBaseContext(), selectedLanguageCode);
 				startActivity(new Intent(getBaseContext(), MainMenuActivity.class));
 				finishAffinity();
 				return true;
@@ -714,22 +746,45 @@ public class SettingsActivity extends PreferenceActivity {
 		});
 	}
 
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-	public static void updateLocale(Context context, String languageTag, String countryTag) {
-		Locale mLocale;
-		mLocale = new Locale(languageTag, countryTag);
+	public static void setToChosenLanguage(Activity activity) {
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
+		String languageTag = sharedPreferences.getString(LANGUAGE_TAG_KEY, "");
+		Locale mLocale = Arrays.asList(LANGUAGE_CODE).contains(languageTag)
+				? getLocaleFromLanguageTag(languageTag)
+				: new Locale(CatroidApplication.defaultSystemLanguage);
+
+		Locale.setDefault(mLocale);
+		updateLocale(activity, mLocale);
+		updateLocale(activity.getApplicationContext(), mLocale);
+	}
+
+	public static void updateLocale(Context context, Locale locale) {
 		Resources resources = context.getResources();
 		DisplayMetrics displayMetrics = resources.getDisplayMetrics();
 		Configuration conf = resources.getConfiguration();
-		conf.locale = mLocale;
-		Locale.setDefault(mLocale);
-		conf.setLayoutDirection(mLocale);
+		conf.setLocale(locale);
 		resources.updateConfiguration(conf, displayMetrics);
 	}
 
-	private void setLanguageSharedPreference(String value) {
-		SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+	private static Locale getLocaleFromLanguageTag(String languageTag) {
+		if (languageTag.contains("-r")) {
+			String[] tags = languageTag.split("-r");
+			return new Locale(tags[0], tags[1]);
+		} else if (languageTag.equals(getAppContext().getResources().getString(R.string.device_language))) {
+			return new Locale(defaultSystemLanguage);
+		} else {
+			return new Locale(languageTag);
+		}
+	}
+
+	public static void setLanguageSharedPreference(Context context, String value) {
+		SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
 		editor.putString(LANGUAGE_TAG_KEY, value);
 		editor.commit();
+	}
+
+	public static void removeLanguageSharedPreference(Context mContext) {
+		SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(mContext).edit();
+		editor.remove(LANGUAGE_TAG_KEY).commit();
 	}
 }

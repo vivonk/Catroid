@@ -48,6 +48,7 @@ import org.catrobat.catroid.content.bricks.WaitBrick;
 import org.catrobat.catroid.formulaeditor.Formula;
 import org.catrobat.catroid.formulaeditor.FormulaElement;
 import org.catrobat.catroid.formulaeditor.Functions;
+import org.catrobat.catroid.formulaeditor.Operators;
 import org.catrobat.catroid.io.StorageHandler;
 import org.catrobat.catroid.soundrecorder.SoundRecorder;
 import org.catrobat.catroid.stage.StageListener;
@@ -145,7 +146,7 @@ public class DefaultProjectCreatorDefault extends DefaultProjectCreator {
 			LookData backgroundLookData = new LookData(backgroundName, backgroundFile.getName());
 
 			Sprite backgroundSprite = defaultProject.getDefaultScene().getSpriteList().get(0);
-			backgroundSprite.getLookDataList().add(backgroundLookData);
+			backgroundSprite.getLookList().add(backgroundLookData);
 
 			LookData birdWingUpLookData = new LookData(birdWingUpLookName, birdWingUpFile.getName());
 			LookData birdWingDownLookData = new LookData(birdWingDownLookName, birdWingDownFile.getName());
@@ -155,16 +156,10 @@ public class DefaultProjectCreatorDefault extends DefaultProjectCreator {
 			SoundInfo soundInfo1 = new SoundInfo(tweet1, soundFile1.getName());
 			SoundInfo soundInfo2 = new SoundInfo(tweet2, soundFile2.getName());
 
-			ProjectManager.getInstance().getFileChecksumContainer().addChecksum(soundInfo1.getChecksum(), soundInfo1.getAbsolutePath());
-			ProjectManager.getInstance().getFileChecksumContainer().addChecksum(soundInfo2.getChecksum(), soundInfo2.getAbsolutePath());
-			ProjectManager.getInstance().getFileChecksumContainer().addChecksum(birdWingUpLookData.getChecksum(), birdWingUpLookData.getAbsolutePath());
-			ProjectManager.getInstance().getFileChecksumContainer().addChecksum(birdWingDownLookData.getChecksum(), birdWingDownLookData.getAbsolutePath());
-			ProjectManager.getInstance().getFileChecksumContainer().addChecksum(cloudLookData.getChecksum(), cloudLookData.getAbsolutePath());
-
 			Sprite cloudSprite1 = spriteFactory.newInstance(SingleSprite.class.getSimpleName(), cloudSpriteName1);
 			Sprite cloudSprite2 = spriteFactory.newInstance(SingleSprite.class.getSimpleName(), cloudSpriteName2);
-			cloudSprite1.getLookDataList().add(cloudLookData);
-			cloudSprite2.getLookDataList().add(cloudLookData.clone());
+			cloudSprite1.getLookList().add(cloudLookData);
+			cloudSprite2.getLookList().add(cloudLookData.clone());
 
 			Script cloudSpriteScript1 = new StartScript();
 			Script cloudSpriteScript2 = new StartScript();
@@ -208,8 +203,8 @@ public class DefaultProjectCreatorDefault extends DefaultProjectCreator {
 			defaultProject.getDefaultScene().addSprite(cloudSprite2);
 
 			Sprite birdSprite = spriteFactory.newInstance(SingleSprite.class.getSimpleName(), birdLookName);
-			birdSprite.getLookDataList().add(birdWingUpLookData);
-			birdSprite.getLookDataList().add(birdWingDownLookData);
+			birdSprite.getLookList().add(birdWingUpLookData);
+			birdSprite.getLookList().add(birdWingDownLookData);
 			birdSprite.getSoundList().add(soundInfo1);
 			birdSprite.getSoundList().add(soundInfo2);
 			Script birdStartScript = new StartScript();
@@ -220,12 +215,20 @@ public class DefaultProjectCreatorDefault extends DefaultProjectCreator {
 			birdStartScriptTwo.addBrick(foreverBrickTwo);
 
 			FormulaElement randomElement = new FormulaElement(FormulaElement.ElementType.FUNCTION, Functions.RAND.toString(), null);
-			randomElement.setLeftChild(new FormulaElement(FormulaElement.ElementType.NUMBER, "-300", randomElement));
+			FormulaElement randomElementLeftChild = new FormulaElement(FormulaElement.ElementType.OPERATOR,
+					Operators.MINUS.toString(), randomElement);
+			randomElementLeftChild.setRightChild(new FormulaElement(FormulaElement.ElementType.NUMBER, "300",
+					randomElementLeftChild));
+			randomElement.setLeftChild(randomElementLeftChild);
 			randomElement.setRightChild(new FormulaElement(FormulaElement.ElementType.NUMBER, "300", randomElement));
 			Formula randomGlide1 = new Formula(randomElement);
 			FormulaElement randomElement2 = new FormulaElement(FormulaElement.ElementType.FUNCTION, Functions.RAND.toString(), null);
-			randomElement2.setLeftChild(new FormulaElement(FormulaElement.ElementType.NUMBER, "-200", randomElement));
-			randomElement2.setRightChild(new FormulaElement(FormulaElement.ElementType.NUMBER, "200", randomElement));
+			FormulaElement randomElement2LeftChild = new FormulaElement(FormulaElement.ElementType.OPERATOR,
+					Operators.MINUS.toString(), randomElement2);
+			randomElement2LeftChild.setRightChild(new FormulaElement(FormulaElement.ElementType.NUMBER, "200",
+					randomElement2LeftChild));
+			randomElement2.setLeftChild(randomElement2LeftChild);
+			randomElement2.setRightChild(new FormulaElement(FormulaElement.ElementType.NUMBER, "200", randomElement2));
 			Formula randomGlide2 = new Formula(randomElement2);
 			GlideToBrick glideToBrickBird = new GlideToBrick(randomGlide1, randomGlide2, new Formula(1));
 			birdStartScript.addBrick(glideToBrickBird);

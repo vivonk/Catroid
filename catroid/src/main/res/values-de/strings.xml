@@ -22,28 +22,22 @@
   ~ You should have received a copy of the GNU Affero General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
   <!-- General terms -->
   <string name="app_name">Pocket Code</string>
   <string name="cancel">Abbrechen</string>
   <string name="next">Weiter</string>
   <string name="done">Fertig</string>
-  <string name="name_already_exists">Dieser Name ist bereits vergeben. Bitte wähle einen anderen!</string>
-  <string name="name_consists_of_spaces_only">Der Name darf nicht nur aus Leerzeichen bestehen.</string>
-  <string name="rename">Umbenennen</string>
-  <string name="delete">Löschen</string>
+  <string name="select_all">Alle auswählen</string>
   <string name="yes">Ja</string>
   <string name="no">Nein</string>
-  <string name="copy">Kopieren</string>
-  <string name="cut">Ausschneiden</string>
-  <string name="move">Verschieben</string>
+  <string name="back">Zurück</string>
+  <string name="ok">OK</string>
+  <string name="agree">Zustimmen</string>
+  <string name="disagree">Ablehnen</string>
+  <string name="delete_account">Meinen Account löschen</string>
+  <string name="warning">Warning</string>
   <string name="backpack_add">In den Rucksack packen</string>
-  <string name="backpack">Rucksack</string>
-  <string name="packing">Einpacken</string>
-  <string name="unpack">Auspacken</string>
-  <string name="unpack_bg">Als Hintergrund entpacken</string>
-  <string name="unpack_object">Als Objekt entpacken</string>
-  <string name="copy_addition">kopieren</string>
   <string name="close">Schließen</string>
   <string name="error">Fehler</string>
   <string name="please_wait">Bitte warten</string>
@@ -62,23 +56,15 @@
   <string name="loading_google_login">Google+ Anmeldung ist auf unserem Server abgeschlossen&#8230;</string>
   <string name="background">Hintergrund</string>
   <string name="stage">Bühne</string>
-  <string name="ok">OK</string>
   <string name="play">Spielen</string>
   <string name="settings">Einstellungen</string>
   <string name="redo">Wiederholen</string>
   <string name="undo">Rückgängig</string>
   <string name="name_exists">Name existiert bereits</string>
   <string name="no_name">Kein Name</string>
-  <string name="is_empty">ist leer</string>
   <string name="new_group">Neue Gruppe</string>
   <string name="my_group">Meine Gruppe</string>
   <string name="name">Name:</string>
-  <string name="nothing_to_copy">Nichts zu kopieren</string>
-  <string name="nothing_to_backpack_and_unpack">Nichts zum Einpacken und Auspacken</string>
-  <string name="nothing_to_unpack">Nichts zum Auspacken</string>
-  <string name="nothing_to_delete">Nichts zu löschen</string>
-  <string name="nothing_to_rename">Nichts zum Unbenennen</string>
-  <string name="unpack_background">Der Hintergrund des Programms wird ersetzt</string>
   <string name="degrees">Grad</string>
   <string name="landscape">Querformat</string>
   <string name="portrait">Hochformat</string>
@@ -93,6 +79,7 @@
   <string name="main_menu_help">Hilfe</string>
   <string name="main_menu_web">Erkunden</string>
   <string name="main_menu_upload">Hochladen</string>
+  <string name="main_menu_privacy_policy">Datenschutz-Vereinbarung</string>
   <string name="main_menu_about">Über die App</string>
   <string name="main_menu_terms_of_use">Nutzungsbedingungen und Leistungen</string>
   <string name="main_menu_rate_app">Bewerte uns!</string>
@@ -108,8 +95,12 @@
   <string name="marketing_more_on_google_play">Weitere Apps auf Google Play</string>
   <!-- Settings activity -->
   <string name="preference_title">Einstellungen</string>
-  <string name="preference_title_enable_quadcopter_bricks">ARDrone 2.0 Bausteine</string>
+  <string name="preference_title_language">Sprache</string>
+  <string name="preference_description_language">Wähle die Sprache für die App</string>
+  <string name="preference_title_enable_quadcopter_bricks">Parrot AR.Drone 2.0 Bausteine</string>
   <string name="preference_description_quadcopter_bricks">Erlaubt dir, die ARDrone 2.0 zu steuern.</string>
+  <string name="preference_title_enable_jumpingsumo_bricks">Parrot Jumping Sumo Bausteine</string>
+  <string name="preference_description_jumpingsumo_bricks">Erlaubt die Steuerung von Parrots Jumping Sumo</string>
   <string name="preference_title_enable_mindstorms_nxt_bricks">Lego Mindstorms NXT Bausteine</string>
   <string name="preference_title_enable_mindstorms_ev3_bricks">Lego Mindstorms EV3 Bausteine</string>
   <string name="preference_description_mindstorms_nxt_bricks">Erlaubt die Steuerung von Lego Mindstorms NXT Robotern</string>
@@ -124,8 +115,8 @@
   <string name="preference_description_cast_feature_globally_enabled">Zeigt den Cast-Button und erlaubt die Erstellung eines Cast-Projektes</string>
   <string name="preference_title_enable_nfc_bricks">Nahfeldkommunikation</string>
   <string name="preference_description_nfc_bricks">NFC-Tags in Programmen zulassen</string>
-  <string name="preference_description_crash_reports">Absturzberichte automatisch senden</string>
   <string name="preference_title_enable_crash_reports">Sende anonyme Absturzberichte</string>
+  <string name="preference_description_crash_reports">Absturzberichte automatisch senden</string>
   <!-- -->
   <string name="preference_description_arduino_bricks">Erlaubt die Steuerung mit Arduino Bausteinen</string>
   <string name="preference_title_enable_raspi_bricks">Raspberry Pi Bausteine</string>
@@ -227,90 +218,209 @@
   <string name="reconvert_dialog_download">Bereits konvertiertes Programm herunterladen</string>
   <string name="reconvert_dialog_reconvert">Dieses Programm zurückkonvertieren</string>
   <!--  -->
-  <!-- New Object Dialog -->
-  <string name="dialog_new_object_pocketpaint">Bild zeichnen</string>
-  <string name="dialog_new_object_gallery">Bild auswählen</string>
-  <string name="dialog_new_object_camera">Bild aufnehmen</string>
-  <string name="dialog_new_object_look_preview">Bildvorschau</string>
-  <string name="dialog_new_object_name">Objektname</string>
-  <string name="dialog_new_object_switch_title">Neues Objekt erstellt</string>
-  <string name="dialog_new_object_switch_message">Zu neuem Objekt wechseln?</string>
-  <!--  -->
-  <!-- Terms of Use Dialog -->
-  <string name="dialog_terms_of_use_title">Nutzungsbedingungen und Leistungen</string>
-  <string name="dialog_terms_of_use_info">Um unsere Apps und andere ausführbare Dateien, die durch das Catrobat-Projekt angeboten werden, verwenden zu dürfen, musst du unsere Nutzungsbedingungen und Service strikt befolgen. Für genauere Informationen siehe auf den Link darunter.\n\n</string>
-  <string name="dialog_terms_of_use_link_text">Nutzungsbedingungen und Leistungen</string>
-  <!--  -->
-  <!-- Terms of Use Dialog Parrot ARDrone-->
-  <string name="dialog_terms_of_use_link_text_parrot_reminder">Nutzungsbedingungen und Leistungen</string>
-  <string name="dialog_terms_of_use_parrot_reminder_text">Du bist dabei die App in Kombination mit der Parrot AR Drohne zu nutzen. 
-Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den Nutzungsrichtlinien von Catrobat zu berücksichtigen</string>
-  <string name="dialog_terms_of_use_parrot_reminder_do_not_remind_again">Nicht nochmal erinnern.</string>
-  <!--  -->
-  <!-- About Dialog -->
-  <string name="dialog_about_title">Über die App</string>
-  <string name="dialog_about_license_info">Diese App ist eine 
-        Programmierumgebung und Interpreter für Android Geräte für die visuelle
-        Programmiersprache Catrobat.\n\n
-        Der Quellcode der App unterliegt hauptsälich der GNU AGPL v3 Lizenz. 
-       Für weitere Informationen klicken Sie auf den untenstehenden Link.\n</string>
-  <string name="dialog_about_license_link_text">Source Code Lizenz</string>
-  <string name="dialog_about_catrobat_link_text">Über Catrobat</string>
-  <!--  -->
-  <!-- Project activity view -->
-  <string name="project_name">Programm:</string>
-  <string name="my_projects_activity_title">Programme</string>
-  <string name="number_of_objects">Objekte:</string>
-  <string name="start_scene_name">%1$s (Erste Szene)</string>
+  <!-- ERRORS -->
+  <string name="wtf_error">An unexpected Error occurred: Could NOT restore default Project.</string>
+  <!-- Project Handling Errors -->
+  <string name="error_copy_project">An error occurred while copying Project</string>
+  <!-- Dialog Errors -->
+  <string name="name_already_exists">Dieser Name ist bereits vergeben. Bitte wähle einen anderen!</string>
+  <string name="name_consists_of_spaces_only">Der Name darf nicht nur aus Leerzeichen bestehen.</string>
+  <!-- Recycler View -->
+  <string name="am_empty_list">There are no items in this list yet.</string>
+  <string name="am_backpack">Pack</string>
+  <string name="am_unpack">Auspacken</string>
+  <string name="am_copy">Kopieren</string>
+  <string name="am_delete">Löschen</string>
+  <string name="am_rename">Umbenennen</string>
+  <string name="dialog_confirm_delete">This cannot be undone!</string>
+  <string name="list_headline_background">Hintergrund</string>
+  <string name="list_headline_sprites">Objekte</string>
+  <!-- Options Menu Options -->
+  <string name="backpack">Rucksack</string>
+  <string name="copy">Kopieren</string>
+  <string name="delete">Löschen</string>
+  <string name="rename">Umbenennen</string>
+  <string name="show_details">Details anzeigen</string>
+  <string name="hide_details">Details verbergen</string>
+  <!-- Action Mode Titles -->
+  <plurals name="am_projects_title">
+    <item quantity="one">%d Project</item>
+    <item quantity="other">%d Projects</item>
+  </plurals>
+  <plurals name="am_scenes_title">
+    <item quantity="one">%d Scene</item>
+    <item quantity="other">%d Scenes</item>
+  </plurals>
+  <plurals name="am_sprites_title">
+    <item quantity="one">%d Object</item>
+    <item quantity="other">%d Objects</item>
+  </plurals>
+  <plurals name="am_looks_title">
+    <item quantity="one">%d Look</item>
+    <item quantity="other">%d Looks</item>
+  </plurals>
+  <plurals name="am_sounds_title">
+    <item quantity="one">%d Sound</item>
+    <item quantity="other">%d Sounds</item>
+  </plurals>
+  <plurals name="am_nfc_tags_title">
+    <item quantity="one">%d NFC Tag</item>
+    <item quantity="other">%d NFC Tags</item>
+  </plurals>
+  <plurals name="am_scripts_title">
+    <item quantity="one">%d Script</item>
+    <item quantity="other">%d Scripts</item>
+  </plurals>
+  <!-- New Dialog Titles -->
+  <string name="new_scene_dialog">New Scene</string>
+  <string name="scene_name">Szenen-Name:</string>
+  <!-- Delete Dialog Titles -->
+  <plurals name="delete_projects">
+    <item quantity="one">Delete this Project?</item>
+    <item quantity="other">Delete these Projects?</item>
+  </plurals>
+  <plurals name="delete_scenes">
+    <item quantity="one">Delete this Scene?</item>
+    <item quantity="other">Delete these Scenes?</item>
+  </plurals>
+  <plurals name="delete_sprites">
+    <item quantity="one">Delete this Object?</item>
+    <item quantity="other">Delete these Objects?</item>
+  </plurals>
+  <plurals name="delete_looks">
+    <item quantity="one">Delete this Look?</item>
+    <item quantity="other">Delete these Looks?</item>
+  </plurals>
+  <plurals name="delete_sounds">
+    <item quantity="one">Delete this Sound?</item>
+    <item quantity="other">Delete these Sounds?</item>
+  </plurals>
+  <plurals name="delete_nfc_tags">
+    <item quantity="one">Delete this Tag?</item>
+    <item quantity="other">Delete these Tags?</item>
+  </plurals>
+  <plurals name="delete_scripts">
+    <item quantity="one">Delete this Script?</item>
+    <item quantity="other">Delete these Scripts?</item>
+  </plurals>
+  <plurals name="delete_bricks">
+    <item quantity="one">Delete this Brick?</item>
+    <item quantity="other">Delete these Bricks?</item>
+  </plurals>
+  <!-- Dialog Labels -->
+  <string name="project_name_label">Program:</string>
+  <string name="sprite_name_label">Object name:</string>
+  <string name="look_name_label">Look name:</string>
+  <string name="sound_name_label">Sound name:</string>
+  <!-- Details Labels -->
   <string name="number_of_scripts">Skripte:</string>
   <string name="number_of_bricks">Bausteine:</string>
   <string name="number_of_looks">Aussehen:</string>
   <string name="number_of_sounds">Klänge:</string>
-  <string name="show_details">Details anzeigen</string>
-  <string name="hide_details">Details verbergen</string>
-  <string name="insert_below">Darunter einfügen</string>
-  <string name="sprite">Objekt</string>
-  <string name="sprites">Objekte</string>
-  <string name="spritelist_background_headline">Hintergrund</string>
-  <string name="dialog_confirm_delete_object_title">Dieses Objekt löschen?</string>
-  <string name="dialog_confirm_delete_multiple_objects_title">Diese Objekte löschen?</string>
-  <string name="dialog_confirm_delete_object_message">Kann nicht rückgängig gemacht werden!</string>
-  <string name="select_all">Alle auswählen</string>
-  <string name="deselect_all">Nichts auswählen</string>
-  <string name="backpack_replace_object">Das Objekt %1$s ist bereits im Rucksack vorhanden. Soll dieses ersetzt werden?</string>
-  <string name="backpack_replace_scene">Die Szene %1$s ist bereits im Rucksack vorhanden. Soll diese ersetzt werden?</string>
-  <string name="backpack_replace_object_multiple">Im Rucksack sind bereits Objekte vorhanden. Möchtest du diese ersetzen?</string>
-  <string name="groups_create">Gruppe hinzufügen</string>
-  <string name="group_created">Gruppe erfolgreich angelegt!</string>
-  <string name="ungroup">Gruppierung aufheben</string>
-  <string name="group_objects_delete">Gruppe und Objekte löschen</string>
-  <string name="group">Gruppe</string>
-  <string name="backpack_replace_scene_multiple">Im Rucksack sind bereits Szenen vorhanden. Möchtest du diese ersetzen?</string>
   <!--  -->
-  <!-- Sprite activity -->
-  <string name="copy_sprite_name_suffix">_Kopie</string>
+  <!-- Rename Dialog Titles -->
+  <string name="rename_project">Programm umbenennen</string>
+  <string name="rename_scene_dialog">Szene umbenennen</string>
+  <string name="rename_sprite_dialog">Objekt umbenennen</string>
+  <string name="rename_look_dialog">Aussehen umbenennen</string>
+  <string name="rename_sound_dialog">Klang umbenennen</string>
+  <string name="rename_nfctag_dialog">NFC-Tag umbenennen</string>
+  <!-- Action Toasts -->
+  <plurals name="packed_scenes">
+    <item quantity="one">Backpacked %d Scene!</item>
+    <item quantity="other">Backpacked %d Scenes!</item>
+  </plurals>
+  <plurals name="packed_sprites">
+    <item quantity="one">Backpacked %d Object!</item>
+    <item quantity="other">Backpacked %d Objects!</item>
+  </plurals>
+  <plurals name="packed_looks">
+    <item quantity="one">Backpacked %d Look!</item>
+    <item quantity="other">Backpacked %d Looks!</item>
+  </plurals>
+  <plurals name="packed_sounds">
+    <item quantity="one">Backpacked %d Sound!</item>
+    <item quantity="other">Backpacked %d Sounds!</item>
+  </plurals>
+  <string name="packed_script_group">Backpacked 1 Script Group!</string>
+  <plurals name="unpacked_scenes">
+    <item quantity="one">Unpacked %d Scene!</item>
+    <item quantity="other">Unpacked %d Scenes!</item>
+  </plurals>
+  <plurals name="unpacked_sprites">
+    <item quantity="one">Unpacked %d Object!</item>
+    <item quantity="other">Unpacked %d Objects!</item>
+  </plurals>
+  <plurals name="unpacked_looks">
+    <item quantity="one">Unpacked %d Look!</item>
+    <item quantity="other">Unpacked %d Looks!</item>
+  </plurals>
+  <plurals name="unpacked_sounds">
+    <item quantity="one">Unpacked %d Sound!</item>
+    <item quantity="other">Unpacked %d Sounds!</item>
+  </plurals>
+  <plurals name="unpacked_scripts">
+    <item quantity="one">Unpacked %d Script!</item>
+    <item quantity="other">Unpacked %d Scripts!</item>
+  </plurals>
+  <plurals name="copied_scenes">
+    <item quantity="one">Copied %d Scene!</item>
+    <item quantity="other">Copied %d Scenes!</item>
+  </plurals>
+  <plurals name="copied_sprites">
+    <item quantity="one">Copied %d Object!</item>
+    <item quantity="other">Copied %d Objects!</item>
+  </plurals>
+  <plurals name="copied_looks">
+    <item quantity="one">Copied %d Look!</item>
+    <item quantity="other">Copied %d Looks!</item>
+  </plurals>
+  <plurals name="copied_sounds">
+    <item quantity="one">Copied %d Sound!</item>
+    <item quantity="other">Copied %d Sounds!</item>
+  </plurals>
+  <plurals name="copied_nfc_tags">
+    <item quantity="one">Copied %d NFC Tag!</item>
+    <item quantity="other">Copied %d NFC Tags!</item>
+  </plurals>
+  <plurals name="deleted_projects">
+    <item quantity="one">Deleted %d Project!</item>
+    <item quantity="other">Deleted %d Projects!</item>
+  </plurals>
+  <plurals name="deleted_scenes">
+    <item quantity="one">Deleted %d Scene!</item>
+    <item quantity="other">Deleted %d Scenes!</item>
+  </plurals>
+  <plurals name="deleted_sprites">
+    <item quantity="one">Deleted %d Sprite!</item>
+    <item quantity="other">Deleted %d Sprites!</item>
+  </plurals>
+  <plurals name="deleted_looks">
+    <item quantity="one">Deleted %d Look!</item>
+    <item quantity="other">Deleted %d Looks!</item>
+  </plurals>
+  <plurals name="deleted_sounds">
+    <item quantity="one">Deleted %d Sound!</item>
+    <item quantity="other">Deleted %d Sounds!</item>
+  </plurals>
+  <plurals name="deleted_nfc_tags">
+    <item quantity="one">Deleted %d NFC Tag!</item>
+    <item quantity="other">Deleted %d NFC Tags!</item>
+  </plurals>
+  <plurals name="deleted_scripts">
+    <item quantity="one">Deleted %d Script!</item>
+    <item quantity="other">Deleted %d Scripts!</item>
+  </plurals>
   <!--  -->
-  <!-- Script activity -->
-  <string name="scripts">Skripte</string>
-  <string name="look">Aussehen</string>
-  <string name="looks">Aussehen</string>
-  <string name="sound">Klang</string>
-  <string name="sounds">Klänge</string>
-  <string name="backgrounds">Hintergründe</string>
-  <string name="size">Größe:</string>
-  <string name="script_group">Skript Gruppe</string>
-  <string name="script_groups">Skript Gruppen</string>
-  <string name="script_group_name_given">Skript Gruppenname existiert bereits. Bitte wähle einen anderen.</string>
-  <string name="group_or_object_name_given">Eine Gruppe oder Objekt mit demselben Namen existiert bereits. Bitte wähle einen anderen!</string>
+  <!-- ProjectListActivity and ProjectListFragment -->
+  <string name="project_list_title">Programme</string>
+  <string name="last_used">Letzter Zugriff:</string>
+  <string name="description">Beschreibung:</string>
+  <string name="set_description">Beschreibung ändern</string>
+  <string name="details_date_today">Heute</string>
   <!--  -->
-  <!-- Script fragment -->
+  <!-- ScriptListFragment -->
   <string name="fragment_script_text_description">Tippe auf \"+\" um Skripte hinzuzufügen</string>
-  <string name="dialog_confirm_delete_brick_title">Diesen Baustein löschen?</string>
-  <string name="dialog_confirm_delete_script_title">Dieses Skript löschen?</string>
-  <string name="dialog_confirm_delete_multiple_bricks_title">Diese Bausteine löschen?</string>
-  <string name="dialog_confirm_delete_backpack_group_title">Diese Gruppe löschen?</string>
-  <string name="dialog_confirm_delete_multiple_backpack_groups_title">Diese Gruppen löschen?</string>
-  <string name="dialog_confirm_delete_brick_message">Kann nicht rückgängig gemacht werden!</string>
   <plurals name="number_of_bricks_to_delete">
     <item quantity="one">Lösche %d Baustein</item>
     <item quantity="other">Lösche %d Bausteine</item>
@@ -324,56 +434,22 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
     <item quantity="other">Packe %d Bausteine ein</item>
   </plurals>
   <!--  -->
-  <!-- Look fragment -->
+  <!-- LookListFragment -->
   <string name="fragment_look_text_description">Tippe auf \"+\" um Aussehen hinzuzufügen</string>
-  <string name="fragment_background_text_description">Tippe auf \"+\" um Hintergründe hinzuzufügen</string>
-  <string name="rename_look_dialog">Aussehen umbenennen</string>
   <string name="pocket_paint_not_installed_title">Pocket Paint ist nicht installiert!</string>
-  <string name="pocket_paint_not_installed">Möchtest du es jetzt installieren?</string>
+  <string name="pocket_paint_not_installed_message">Bitte Pocket Paint installieren</string>
   <string name="default_look_name">Aussehen</string>
-  <string name="delete_look_dialog">Aussehen löschen?</string>
   <string name="select_look_from_gallery">Bild auswählen</string>
   <string name="select_look_from_camera">Foto auswählen</string>
   <string name="look_measure">Abmessungen:</string>
-  <string name="dialog_confirm_delete_look_title">Dieses Aussehen löschen?</string>
-  <string name="dialog_confirm_delete_multiple_looks_title">Diese Aussehen löschen?</string>
-  <string name="dialog_confirm_delete_look_message">Kann nicht rückgängig gemacht werden!</string>
-  <string name="lookname">Name:</string>
-  <string name="backpack_replace_look">Das Aussehen %1$s ist bereits im Rucksack vorhanden. Soll dieses ersetzt werden?</string>
-  <string name="backpack_replace_look_multiple">Im Rucksack sind bereits Aussehen vorhanden. Möchtest du diese ersetzen?</string>
   <!--  -->
-  <!-- Sound fragment -->
+  <!-- SoundListFragment -->
   <string name="fragment_sound_text_description">Tippe auf \"+\" um Klänge hinzuzufügen</string>
-  <string name="rename_sound_dialog">Klang umbenennen</string>
-  <string name="backpack_title">Rucksack</string>
-  <string name="sound_play">abspielen</string>
-  <string name="sound_stop">stoppen</string>
   <string name="sound_select_source">Klang auswählen</string>
-  <string name="sound_time_seperator">/</string>
-  <string name="delete_sound_dialog">Klang löschen?</string>
   <string name="length">Länge:</string>
-  <string name="dialog_confirm_delete_sound_title">Diesen Klang löschen?</string>
-  <string name="dialog_confirm_delete_multiple_sounds_title">Diese Klänge löschen?</string>
-  <string name="dialog_confirm_delete_sound_message">Dies kann nicht rückgängig gemacht werden!</string>
-  <string name="sound_name">Name:</string>
-  <string name="new_sound_name">Klangname:</string>
-  <string name="rename_sound_overwrite">Klang mit demselben Namen existiert bereits. Bitte wähle einen anderen!</string>
-  <string name="backpack_replace_sound">Der Klang %1$s ist bereits im Rucksack vorhanden. Soll dieser ersetzt werden?</string>
-  <string name="backpack_replace_sound_multiple">Im Rucksack sind bereits Klänge vorhanden. Möchtest du diese ersetzen?</string>
   <!--  -->
-  <!-- NfcTags fragment -->
+  <!-- NfcTagListFragment -->
   <string name="fragment_nfctag_text_description">Zum Hinzufügen Tags scannen</string>
-  <string name="rename_nfctag_dialog">NFC-Tag umbenennen</string>
-  <string name="nfctagname_invalid">Dieser NFC-Tag Name ist ungültig</string>
-  <string name="nfctag_scan">Scannen</string>
-  <string name="delete_nfctag_dialog">NFC-Tag löschen?</string>
-  <string name="dialog_confirm_delete_nfctag_title">Diesen NFC-Tag löschen?</string>
-  <string name="dialog_confirm_delete_multiple_nfctags_title">Diese NFC-Tags löschen?</string>
-  <string name="dialog_confirm_delete_nfctag_message">Diese Aktion kann nicht rückgängig gemacht werden!</string>
-  <string name="nfctag_name">NFC-Tag Name:</string>
-  <string name="nfctag">NFC-Tag</string>
-  <string name="nfctags">NFC-Tags</string>
-  <string name="uid">ID</string>
   <string name="ndef_record_label">als NDEF Datentyp </string>
   <string name="brick_set_nfc_tag">Setze NFC Tag auf</string>
   <string name="brick_set_nfc_tag_default_value">www.catrobat.org</string>
@@ -387,37 +463,99 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="tnf_well_known_sms">SMS</string>
   <string name="tnf_well_known_mailto">E-Mail</string>
   <!--  -->
-  <plurals name="unpacking_items_plural">
-    <item quantity="one">wurde entpackt!</item>
-    <item quantity="other">wurden entpackt!</item>
-  </plurals>
-  <plurals name="packing_items_plural">
-    <item quantity="one">wurde eingepackt!</item>
-    <item quantity="other">wurden eingepackt!</item>
-  </plurals>
-  <plurals name="scripts_plural">
-    <item quantity="one">Skript</item>
-    <item quantity="other">Skripte</item>
-  </plurals>
-  <!-- My Projects activity -->
-  <string name="last_used">Letzter Zugriff:</string>
-  <string name="description">Beschreibung:</string>
-  <string name="set_description">Beschreibung ändern</string>
-  <string name="rename_project">Programm umbenennen</string>
-  <string name="copy_project_finished"> kopiert.</string>
-  <string name="program">Programm</string>
-  <string name="programs">Programme</string>
-  <string name="scene">Szene</string>
-  <string name="scenes">Szenen</string>
-  <string name="dialog_confirm_delete_program_title">Dieses Programm löschen?</string>
-  <string name="dialog_confirm_delete_multiple_programs_title">Diese Programme löschen?</string>
-  <string name="dialog_confirm_delete_scene_title">Diese Szene löschen?</string>
-  <string name="dialog_confirm_delete_multiple_scenes_title">Diese Szenen löschen?</string>
-  <string name="details_date_today">Heute</string>
-  <string name="details_date_yesterday">Gestern</string>
-  <string name="dialog_copy_project_title">Programm kopieren</string>
+  <!-- Backpack -->
+  <string name="backpack_title">Rucksack</string>
+  <string name="pack">Pack</string>
+  <string name="unpack">Auspacken</string>
   <!--  -->
-  <!-- Soundrecorder activity -->
+  <!-- Sprite Attribute Activity -->
+  <string name="scripts">Skripte</string>
+  <string name="backgrounds">Hintergründe</string>
+  <string name="looks">Aussehen</string>
+  <string name="sounds">Klänge</string>
+  <string name="nfctags">NFC-Tags</string>
+  <string name="size">Größe:</string>
+  <!-- NewProjectDialog -->
+  <string name="new_project_dialog_title">Neues Programm</string>
+  <string name="new_project_dialog_hint">Mein Programm</string>
+  <string name="new_project_description_dialog_hint">Meine Beschreibung</string>
+  <string name="new_project_name">Programmname:</string>
+  <string name="new_project_empty">Leeres Programm erstellen</string>
+  <string name="new_project_default">Beispielprogramm erstellen</string>
+  <string name="new_project_default_drone">Create example AR.Drone 2.0 program</string>
+  <string name="new_project_default_jumping_sumo">Erstelle ein Beispiel Jumping Sumo Programm</string>
+  <string name="project_orientation_title">Ausrichtung:</string>
+  <string name="project_select_screen_title">Display</string>
+  <!--  -->
+  <!-- NewSpriteDialog -->
+  <string name="new_sprite_dialog_title">Neues Objekt</string>
+  <!--  -->
+  <!-- NewLookDialog -->
+  <string name="new_look_dialog_title">Aussehen hinzufügen</string>
+  <string name="add_look_from_camera">Foto schießen</string>
+  <string name="add_look_draw_new_image">Neues Bild erstellen</string>
+  <string name="add_look_choose_image">Bild auswählen</string>
+  <string name="add_look_media_library">Medienbibliothek</string>
+  <string name="add_look_drone_video">AR.Drone 2.0 video</string>
+  <!--  -->
+  <!-- NewSoundDialog -->
+  <string name="new_sound_dialog_title">Klang hinzufügen</string>
+  <string name="add_sound_from_recorder">Klang aufnehmen</string>
+  <string name="add_sound_choose_file">Klang auswählen</string>
+  <string name="add_sound_music">Komponist</string>
+  <!-- Privacy Policy -->
+  <string name="dialog_privacy_policy_title">Datenschutz-Vereinbarung</string>
+  <string name="dialog_privacy_policy_text">Version 2.0, 20. September 2017 \n\n
+
+Um dir alle Vorteile unserer Dienste und des damit verbundenen Accounts bieten zu können, ist es notwendig gewisse Daten von dir zu speichern. \n\n
+
+    •  Um deinen Account in unserem System nutzen zu können, sowie um dich über allfällige Änderungen deines Accounts (z.B. Verletzung unserer Nutzungsbestimmungen, etc.) und unserer Vereinbarungen informieren zu können, speichern wir deinen Nutzernamen und die von dir angegebene E-Mail-Adresse.  Falls du dich über Google Plus oder Facebook verbunden hast, speichern wir zusätzlich einen individuellen Schlüssel zu diesen Diensten. Diese Daten werden nicht für andere Zwecke (z.B. Marketing) genutzt, solange du uns das nicht explizit erlaubst.\n\n
+
+    •  Um den illegalen Missbrauch unserer Dienste zu vermeiden (z.B. durch den Upload von Projekten oder der Kommentarfunktion), werden alle öffentliche benutzergenerierten Eingaben mit Zeitangabe und benutzter IP-Adresse intern in unserem System hinterlegt.\n\n
+
+    •  Um unsere Dienste zu verbessern und Forschung im Bereich der (IT-)Bildung zu betreiben, benutzen wir Google Analytics, Crashlytics und Firebase der Google Inc., um allgemeine Nutzungsdaten (z.B. Zeitinformationen, Seitenaufrufe, Betriebssystem und Verbindungsdaten) zu erfassen. Diese Daten sind nicht mit deinem Account verlinkt und enthalten keine persönlichen Daten.\n\n
+
+    •  Wenn du möchtest, kannst du freiwillig dein Heimatland in deinem Profil angeben. Dieses wird nur für statistische und Forschungszwecke benutzt und kann jederzeit selbst aus dem Profil entfernt werden.\n\n
+
+    •  Du kannst jederzeit deinen Account und damit die erfassten Daten (auch erstellten Programme und Kommentare) über die Profileinstellungen (https://share.catrob.at) löschen. Anschließend stehen dir weiterhin alle unsere Dienste zur Verfügung, aber ohne die Möglichkeit zu haben aktiv (z.B. durch das Hochladen neuer Programme, Kommentieren oder Liken) mitzuwirken. \n\n
+
+    •  Alle Dienste werden durch das Catrobat Projekt, vertreten durch die \"International Catrobat Association - Verein zur Förderung freier Software\" (Graz, Österreich), betrieben. \n\n
+
+    •  Um mit uns in Kontakt zu treten sende uns eine Mail an contact@catrobat.org oder schreibe uns an:\n
+Catrobat Projekt \n
+c/o Institut für Softwaretechnologie \n
+Inffeldgasse 16b/II \n
+8010 Graz, Österreich \n\n
+
+Falls du jünger als 16 Jahre bist, müssen deine gesetzlichen Vertreter (normalerweise deine Eltern) dieser Vereinbarung zustimmen.    </string>
+  <string name="dialog_privacy_policy_declined_text">Es ist notwendig der Datenschutzvereinbarung zuzustimmen um weiterhin deinen Account nutzen zu können bzw. dich zu registrieren. Falls du damit nicht einverstanden bist, kannst du deinen Account über dein Profil auf unserer Webseite löschen und alle Dienste die keinen Account benötigen weiterhin nutzen.    </string>
+  <!-- -->
+  <!-- Terms of Use Dialog -->
+  <string name="dialog_terms_of_use_title">Nutzungsbedingungen und Leistungen</string>
+  <string name="dialog_terms_of_use_info">Um unsere Apps und andere ausführbare Dateien, die durch das Catrobat-Projekt angeboten werden, verwenden zu dürfen, musst du unsere Nutzungsbedingungen und Service strikt befolgen. Für genauere Informationen siehe auf den Link darunter.\n\n</string>
+  <string name="dialog_terms_of_use_link_text">Nutzungsbedingungen und Leistungen</string>
+  <!--  -->
+  <!-- Terms of Use Dialog Parrot ARDrone-->
+  <string name="dialog_terms_of_use_link_text_parrot_reminder">Nutzungsbedingungen und Leistungen</string>
+  <string name="dialog_terms_of_use_parrot_reminder_text">Du bist dabei die App in Kombination mit der Parrot AR.Drone 2.0 zu nutzen. 
+Wir möchten dich daran erinnern die Nutzungsbedingungen von Drohne sowie diese von Catrobat zu berücksichtigen.</string>
+  <string name="dialog_terms_of_use_parrot_reminder_do_not_remind_again">Nicht nochmal erinnern.</string>
+  <!--  -->
+  <!-- Terms of Use Dialog Parrot Jumping Sumo-->
+  <string name="dialog_terms_of_use_jumpingsumo_reminder_text">Du bist dabei die App in Kombination mit der Parrot Jumping Sumo zu nutzen. 
+Wir möchten dich daran erinnern die Nutzungsbedingungen von Parrot sowie diese von Catrobat zu berücksichtigen.</string>
+  <!--  -->
+  <!-- About Dialog -->
+  <string name="dialog_about_title">Über die App</string>
+  <string name="dialog_about_license_info">Diese App ist eine 
+        Programmierumgebung und Interpreter für Android Geräte für die visuelle
+        Programmiersprache Catrobat.\n\n
+        Der Quellcode der App unterliegt hauptsälich der GNU AGPL v3 Lizenz. 
+       Für weitere Informationen klicken Sie auf den untenstehenden Link.\n</string>
+  <string name="dialog_about_license_link_text">Source Code Lizenz</string>
+  <string name="dialog_about_catrobat_link_text">Über Catrobat</string>
+  <!--  -->
+  <!-- SoundRecorderActivty -->
   <string name="soundrecorder_name">Rekorder</string>
   <string name="soundrecorder_error">Aufnahme fehlgeschlagen</string>
   <string name="soundrecorder_recorded_filename">Aufnahme</string>
@@ -430,6 +568,7 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="prestage_text_to_speech_engine_not_installed">Text-to-Speech Modul nicht installiert!\nJetzt installieren?</string>
   <string name="prestage_resource_not_available_title">Komponente nicht verfügbar</string>
   <string name="prestage_resource_not_available_text">Dieses Spiel kann nicht auf dem Gerät ausgeführt werden. Die folgenden Komponenten sind nicht verfügbar: \n\n</string>
+  <string name="prestage_resource_in_use_text">Ein anderes Gerät ist mit der Jumping Sumo verbunden. Versichere dich, dass du als einziger/e die Drohne steuerst.</string>
   <string name="prestage_no_flash_available">\u2022 Blitz\n</string>
   <string name="prestage_no_vibrator_available">\u2022 Vibrator\n</string>
   <string name="prestage_no_acceleration_sensor_available">\u2022 Beschleunigungssensor\n</string>
@@ -439,6 +578,7 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="prestage_text_to_speech_error">\u2022 Text-to-Speech Modul\n</string>
   <string name="prestage_no_back_camera_available">\u2022 Hauptkamera\n</string>
   <string name="prestage_no_camera_available">\u2022 Gesichtserkennung\n</string>
+  <string name="prestage_no_jumping_sumo_available">\u2022 Jumping Sumo\n</string>
   <string name="prestage_no_front_camera_available">\u2022 Frontkamera\n</string>
   <string name="prestage_default_resource_not_available">\u2022 unbekannte Komponente\n</string>
   <string name="no_nfc_available">NFC nicht verfügbar</string>
@@ -447,68 +587,20 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <!--  -->
   <!-- Brick context dialog -->
   <string name="brick_context_dialog_move_brick">Baustein verschieben</string>
-  <string name="brick_context_dialog_show_source">Zeige Quellbaustein</string>
   <string name="brick_context_dialog_delete_brick">Baustein löschen</string>
   <string name="brick_context_dialog_copy_brick">Baustein kopieren</string>
   <string name="brick_context_dialog_animate_bricks">Baustein-Teile animieren</string>
-  <string name="brick_context_dialog_add_to_script">Zum Skript hinzufügen</string>
   <string name="brick_context_dialog_formula_edit_brick">Formel bearbeiten</string>
   <string name="brick_context_dialog_delete_script">Skript löschen</string>
   <string name="brick_context_dialog_comment_in">Baustein aktivieren</string>
   <string name="brick_context_dialog_comment_out">Baustein deaktivieren</string>
   <string name="brick_context_dialog_help">Hilfe</string>
   <string name="comment_in_out">Deaktivieren/Aktivieren</string>
-  <string name="comment_in_out_impossible">Nichts zu deaktivieren/aktivieren</string>
   <!--  -->
-  <!-- New look dialog -->
-  <string name="new_look_dialog_title">Aussehen hinzufügen</string>
-  <string name="add_look_from_camera">Foto schießen</string>
-  <string name="add_look_draw_new_image">Neues Bild erstellen</string>
-  <string name="add_look_choose_image">Bild auswählen</string>
-  <string name="add_look_media_library">Medienbibliothek</string>
-  <string name="new_look_name">Bildname:</string>
-  <string name="look_rename_overwrite">Bild mit demselben Namen existiert bereits!</string>
-  <string name="add_look_drone_video">Drohne Video</string>
-  <!--  -->
-  <!-- New Sound dialog -->
-  <string name="new_sound_dialog_title">Klang hinzufügen</string>
-  <string name="add_sound_from_recorder">Klang aufnehmen</string>
-  <string name="add_sound_choose_file">Klang auswählen</string>
-  <string name="add_sound_music">Komponist</string>
-  <!-- New project dialog -->
-  <string name="new_project_dialog_title">Neues Programm</string>
-  <string name="new_project_dialog_hint">Mein Programm</string>
-  <string name="new_project_description_dialog_hint">Meine Beschreibung</string>
-  <string name="new_project_name">Programmname:</string>
-  <string name="new_project_empty">Leeres Programm erstellen</string>
-  <string name="new_project_default">Beispielprogramm erstellen</string>
-  <string name="new_project_default_drone">Beispielprogramm für Drohnen erstellen</string>
-  <string name="project_orientation_title">Ausrichtung:</string>
-  <string name="project_select_screen_title">Display</string>
-  <!--  -->
-  <!-- New scene dialog -->
-  <string name="new_scene_dialog_hint">Meine Szene</string>
-  <string name="new_scene_name">Szenen-Name</string>
-  <string name="new_scene_dialog_title">Neue Szene</string>
-  <string name="rename_scene_dialog">Szene umbenennen</string>
-  <string name="scene_name">Szenen-Name:</string>
-  <!--  -->
-  <!-- Merge Scene Dialog -->
-  <string name="merge_scene_option">Szenen zusammenfügen</string>
-  <string name="merge_scene_label_one">Zusammenfügen</string>
   <!-- Play scene dialog -->
   <string name="play_scene_dialog_title">Spiele Szene:</string>
   <string name="play_scene_dialog_default">Erste Szene (%1$s)</string>
   <string name="play_scene_dialog_current">Current (%1$s)</string>
-  <!--  -->
-  <!-- New sprite dialog -->
-  <string name="new_sprite_dialog_default_sprite_name">Mein Objekt</string>
-  <string name="new_sprite_dialog_title">Neues Objekt</string>
-  <string name="spritename_already_exists">Bitte wähle einen anderen Objektnamen</string>
-  <string name="rename_sprite_dialog">Objekt umbenennen</string>
-  <string name="spritename_invalid">Dieser Objektname ist ungültig</string>
-  <string name="no_spritename_entered">Bitte einen Objektnamen eingeben.</string>
-  <string name="sprite_name">Objektname:</string>
   <!--  -->
   <!-- Sign In dialogs -->
   <string name="sign_in_dialog_title">Einloggen</string>
@@ -577,7 +669,8 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="category_data">Daten</string>
   <string name="category_lego_nxt">Lego NXT</string>
   <string name="category_lego_ev3">LEGO EV3</string>
-  <string name="category_drone">ARDrone</string>
+  <string name="category_drone">AR.Drone 2.0</string>
+  <string name="category_jumping_sumo">Jumping Sumo</string>
   <string name="category_phiro">Phiro</string>
   <string name="category_arduino">Arduino</string>
   <string name="category_cast">Cast</string>
@@ -780,10 +873,9 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="default_cast_project_var_direction">Richtung</string>
   <string name="default_cast_project_name">Mein erstes Cast-Programm</string>
   <!-- defaultDroneValues -->
-  <string name="default_drone_project_name">Mein erstes Drohnen-Programm</string>
+  <string name="default_drone_project_name">My first AR.Drone 2.0 program</string>
   <string name="default_drone_project_sprites_takeoff">Abheben</string>
-  <!-- <string name="default_drone_project_sprites_blink_led">Blink led</string> -->
-  <string name="default_drone_project_sprites_rotate">Drehen</string>
+  <string name="default_drone_project_sprites_flip">Umdrehen</string>
   <string name="default_drone_project_sprites_up">Fliege hoch</string>
   <string name="default_drone_project_sprites_down">Fliege runter</string>
   <string name="default_drone_project_sprites_left">Fliege links</string>
@@ -850,10 +942,10 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="drone_emergency_battery_low">Akkustand ist niedrig (automatische Landung).</string>
   <string name="drone_emergency_camera">Eine oder mehrere Kamera(s) reagieren nicht.</string>
   <string name="drone_emergency_ultrasound">Ultraschallsensor reagiert nicht.</string>
-  <string name="drone_emergency_angle">AR. Drohnen Euler Winkel überschritten. Motoren wurden heruntergefahren, um ein Fehlverhalten zu verhindern.</string>
+  <string name="drone_emergency_angle">AR.Drone Euler-Winkel überschritten. Motoren werden heruntergefahren, um ein Fehlverhalten zu verhindern.</string>
   <string name="drone_emergency_cutout">Ein oder mehrere Motor(en) wurden vom Umfeld gestoppt.</string>
   <string name="drone_alert_battery_low">Akkustand ist zu niedrig, um wieder abzuheben.</string>
-  <string name="drone_alert_ultrasound">Ultraschallsensor kann die AR.Dronen Höhe nicht bestimmen.</string>
+  <string name="drone_alert_ultrasound">Der Ultraschallsensor kann die AR.Dronen Höhe nicht bestimmen.</string>
   <string name="drone_alert_vision">Keine Geschwindigkeitsschätzung der Bodenkamera.</string>
   <string name="drone_emergency_title">Notfall</string>
   <!--  -->
@@ -862,12 +954,6 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="error_no_program_name_entered">Bitte einen Programmnamen angeben.</string>
   <string name="error_no_userbrick_name_entered">Bitte gib einen Benutzerbausteinnamen ein.</string>
   <string name="error_project_exists">Es gibt bereits ein Programm mit diesem Namen.\nBitte wählen Sie einen anderen Namen.</string>
-  <string name="error_scene_exists">Bitte wähle einen anderen Szenen-Namen.</string>
-  <string name="error_scene_not_deleted">Beim Löschen der Szene ist ein Fehler aufgetreten.</string>
-  <string name="error_scene_not_copied">Beim Kopieren der Szene ist ein Fehler aufgetreten.</string>
-  <string name="error_scene_backpack">Im Szenen-Rucksack ist ein Fehler aufgetreten.</string>
-  <string name="error_delete_project">Während des Löschens ist ein Fehler aufgetreten</string>
-  <string name="error_unknown_project">Ein Programm mit diesem Namen existiert nicht.</string>
   <string name="error_project_upload">Beim Hochladen des Programms ist ein Fehler aufgetreten.</string>
   <string name="error_project_download">Beim Herunterladen des Programms ist ein Fehler aufgetreten.</string>
   <string name="error_new_project">Beim Erstellen des neuen Programms ist ein Fehler aufgetreten.</string>
@@ -875,26 +961,27 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="error_rename_scene">Beim Umbenennen der Szene ist ein Fehler aufgetreten.</string>
   <string name="error_load_project">Beim Laden des Programms ist ein Fehler aufgetreten.</string>
   <string name="error_screenshot_failed">Beim Speichern des Bildvorschaues ist ein Fehler aufgetreten.</string>
-  <string name="error_load_image">Beim Laden des Bildes ist ein Fehler aufgetreten.</string>
-  <string name="error_load_image_special_chars">Bild kann nicht geladen werden. Enthält der Dateiname Sonderzeichen (z. B. $, %, &amp;, &#8230;)? </string>
-  <string name="error_load_sound">Beim Laden des Klanges ist ein Fehler aufgetreten.</string>
   <string name="error_internet_connection">Unbekannter Fehler aufgetreten. Überprüfe deine Internetverbindung.</string>
   <string name="error_no_internet">Bitte stelle eine Internetverbindung her.</string>
   <string name="error_project_compatability">Das Programm ist nicht mit dieser Version von Pocket Code kompatibel.</string>
   <string name="error_outdated_version">Die Version ist zu alt. Jetzt updaten?</string>
-  <string name="error_copy_project">Beim kopieren des Programms ist ein Fehler aufgetreten.</string>
   <string name="error_upload_project_with_default_name">Das Programm mit dem Namen \'Mein erstes Programm\' kann nicht hochgeladen werden. Bitte das Programm umbenennen.</string>
   <string name="error_upload_default_project">Das Programm entspricht dem Programm \'Mein erstes Programm\'. Bitte ändere es und versuche es noch einmal.</string>
   <string name="error_adding_brick">Beim Hinzufügen des Bausteins ist ein Fehler aufgetreten</string>
   <string name="error_copying_brick">Beim Kopieren des Bricks ist ein Fehler aufgetreten</string>
-  <string name="error_no_drone_connected_title">Finde keine ARDrone</string>
-  <string name="error_no_drone_connected">Verbinde dich mit dem WLAN der ARDrone und probiere es noch einmal.</string>
-  <string name="error_drone_low_battery_title">Batterie der ARDrone fast leer: %d%%</string>
+  <string name="error_no_drone_connected_title">AR.Drone 2.0 kann nicht gefunden werden. </string>
+  <string name="error_no_drone_connected">Verbinde dein WiFi-Netzwerk mit der AR.Drone 2.0 und versuche es erneut.</string>
+  <string name="error_drone_low_battery_title">AR.Drone 2.0 Batterie schwach: %d%%</string>
   <string name="error_drone_low_battery">Lege einen geladenen Akku ein und probiere es noch einmal.</string>
-  <string name="error_drone_wrong_platform_title">Keine ARDronen Unterstützung</string>
-  <string name="error_drone_wrong_platform">Leider können wir kein ARDronen Projekt auf deinem Gerät ausführen.</string>
+  <string name="error_jumpingsumo_wrong_platform">Leider können wir kein Jumping Sumo Projekt auf deinem Gerät ausführen.</string>
+  <string name="error_no_jumpingsumo_connected_title">Jumping Sumo kann nicht gefunden werden.</string>
+  <string name="error_no_jumpingsumo_connected">Verbinde dein WiFi-Netzwerk mit der Jumping Sumo und versuche es erneut.</string>
+  <string name="error_jumpingsumo_battery_title">Jumping Sumo Batterie schwach</string>
+  <string name="error_jumpingsumo_battery">Lege einen geladenen Akku ein und probiere es noch einmal.</string>
+  <string name="error_jumpingsumo_wrong_platform_title">Kein Unterstützung für Jumping Sumo</string>
+  <string name="error_drone_wrong_platform_title">Keine Unterstützung für AR.Drone 2.0.</string>
+  <string name="error_drone_wrong_platform">Leider können wir kein AR.Dronen Projekt auf deinem Gerät ausführen.</string>
   <string name="error_rename_incompatible_project">Es ist nicht möglich ein inkompatibles Projekt umzubenennen.</string>
-  <string name="error_unpack_scene_with_different_resolution">Achtung! Verschiedene Auflösungen entdeckt.</string>
   <string name="error_unknown_error">Ein unbekannter Fehler ist aufgetreten.</string>
   <string name="error_gps_not_available">Fehler, GPS war nicht verfügbar.</string>
   <string name="error_set_description">Fehler beim Speichern der neuen Beschreibung.</string>
@@ -903,6 +990,7 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="error_no_network_multiple_bricks">Diese Bausteine brauchen eine Netzwerkverbindung:</string>
   <string name="error_no_network_title">Keine Netzwerkverbindung</string>
   <string name="error_no_whatsapp">WhatsApp nicht installiert</string>
+  <string name="error_unsupported_bricks_chromecast">Diese Bausteine können nicht zu einem Chromecast Programm hinzugefügt werden.</string>
   <!--  -->
   <!-- Bluetooth Connection Strings -->
   <string name="notification_blueth_err">Bluetooth konnte nicht aktiviert werden, schließe Bühne</string>
@@ -969,7 +1057,6 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="preference_disable_nxt_info_dialog">Infodialog deaktivieren</string>
   <string name="preference_disable_nxt_info_dialog_description">Beim Öffnen eines Programmes werden programmspezifische NXT Einstellungen nicht mehr angezeigt.</string>
   <string name="preference_title_mindstorms_nxt_sensors_description">Die Zuweisung von NXT Sensoren zu deren Port ist programmspezifisch und können nur für geöffnete Programme konfiguriert werden!</string>
-  <string name="preference_title_drone_properties_setting_description">Die Auswahl der Drohnen-Konfigurationseigenschaften ist programmabhängig und kann nur innerhalb des Programmes konfiguriert werden.</string>
   <string name="lego_nxt_sensor_config_info_text">Das geöffnete Programm beinhaltet Lego Mindstorms NXT Bausteine oder Sensoren. Bitte schließe die Sensoren wie folgt an den Roboter an damit das Programm einwandfrei funktioniert</string>
   <string name="nxt_port_1">Port 1</string>
   <string name="nxt_port_2">Port 2</string>
@@ -992,6 +1079,9 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="ev3_sensor_color">EV3_Farbe</string>
   <string name="ev3_sensor_color_ambient">EV3_Umgebungslicht</string>
   <string name="ev3_sensor_color_reflected">EV3_Lichtreflexion</string>
+  <string name="ev3_sensor_hitechnic_color">HiTechnic color sensor</string>
+  <string name="ev3_sensor_nxt_temperature_c">NXT temperature sensor (°C)</string>
+  <string name="ev3_sensor_nxt_temperature_f">NXT temperature sensor (°F)</string>
   <string name="ev3_motor_a">A</string>
   <string name="ev3_motor_b">B</string>
   <string name="ev3_motor_c">C</string>
@@ -1019,29 +1109,96 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="ev3_led_status_orange_pulse">Orange pulsierend</string>
   <!--  -->
   <!-- Drone Bricks -->
-  <string name="brick_drone_takeoff_land">Abheben / Landen</string>
-  <string name="brick_drone_play_led_animation">Spiele LED-Animation</string>
-  <string name="brick_drone_move_left">Fliege nach links</string>
-  <string name="brick_drone_move_right">Fliege nach rechts</string>
-  <string name="brick_drone_move_forward">Fliege nach vorne</string>
-  <string name="brick_drone_move_backward">Fliege nach hinten</string>
-  <string name="brick_drone_move_up">Fliege nach oben</string>
-  <string name="brick_drone_move_down">Fliege nach unten</string>
-  <string name="brick_drone_flip">Flip</string>
-  <string name="brick_drone_emergency">Notfall</string>
-  <string name="brick_drone_turn_right">Drehe nach rechts</string>
-  <string name="brick_drone_turn_left">Drehe nach links</string>
-  <string name="brick_drone_turn_left_magneto">Drehe nach links</string>
-  <string name="brick_drone_turn_right_magneto">Drehe nach rechts</string>
-  <string name="brick_drone_angle">Winkel</string>
-  <string name="brick_drone_set_config">Konfiguration speichern</string>
-  <string name="brick_drone_switch_camera">Drohnenkamera wechseln</string>
+  <string name="brick_drone_takeoff_land">Abheben / Landen AR.Drone 2.0</string>
+  <string name="brick_drone_play_led_animation">Spiele AR.Drone 2.0 Flash-Animation</string>
+  <string name="brick_drone_flip">Flip AR.Drone 2.0</string>
+  <string name="brick_drone_move_left">Bewege AR.Drone 2.0 nach links</string>
+  <string name="brick_drone_move_right">Bewege AR.Drone 2.0 nach rechts</string>
+  <string name="brick_drone_move_forward">Bewege AR.Drone 2.0 vorwärts</string>
+  <string name="brick_drone_move_backward">Bewege AR.Drone 2.0 rückwärts</string>
+  <string name="brick_drone_move_up">Bewege AR.Drone 2.0 nach oben</string>
+  <string name="brick_drone_move_down">Bewege AR.Drone 2.0 nach unten</string>
+  <string name="brick_drone_emergency">Notfall AR.Drone 2.0</string>
+  <string name="brick_drone_turn_right">Drehe AR.Drone 2.0 nach rechts</string>
+  <string name="brick_drone_turn_left">Drehe AR.Drone 2.0 nach links</string>
+  <string name="brick_drone_turn_left_magneto">Drehe AR. Drone 2.0 nach links [angle]</string>
+  <string name="brick_drone_turn_right_magneto">Drehe AR. Drone 2.0 nach rechts [winkel]</string>
+  <string name="brick_drone_set_config">Konfigurieren AR.Drone 2.0</string>
+  <string name="brick_drone_switch_camera">Wechsle AR.Drone 2.0 Kamera</string>
   <string name="brick_drone_set_altitude">Höhenlimit</string>
   <string name="brick_drone_set_vertical_speed">Vertikales Tempolimit</string>
   <string name="brick_drone_set_rotation_speed">Rotations-Tempolimit</string>
   <string name="brick_drone_set_tilt_limit">Neigungslimit</string>
-  <string name="brick_drone_with">mit</string>
-  <string name="brick_drone_percent_power">Leistung</string>
+  <string name="brick_drone_with">Sekunden mit</string>
+  <string name="brick_drone_percent_power">% Power</string>
+  <!--  -->
+  <!-- Drone play led animation strings -->
+  <string name="drone_animation_blinkgreenred">Blink Green Red</string>
+  <string name="drone_animation_blinkgreen">Blink Green</string>
+  <string name="drone_animation_blinkred">Blink Red</string>
+  <string name="drone_animation_blinkorange">Blink Orange</string>
+  <string name="drone_animation_snakegreenred">Snake Green Red</string>
+  <string name="drone_animation_fire">Fire</string>
+  <string name="drone_animation_standard">Standard</string>
+  <string name="drone_animation_red">Rot</string>
+  <string name="drone_animation_green">Grün</string>
+  <string name="drone_animation_redsnake">Red Snake</string>
+  <string name="drone_animation_blank">Blank</string>
+  <string name="drone_animation_rightmissile">Right Missile</string>
+  <string name="drone_animation_leftmissile">Left Missile</string>
+  <string name="drone_animation_doublemissile">Double Missile</string>
+  <string name="drone_animation_frontleftgreenothersred">Front Left Green Others Red</string>
+  <string name="drone_animation_frontrightgreenothersred">Front Right Green Others Red</string>
+  <string name="drone_animation_rearrightgreenothersred">Rear Right Green Others Red</string>
+  <string name="drone_animation_rearleftgreenothersred">Rear Left Green Others Red</string>
+  <string name="drone_animation_leftgreenrightred">Left Green Right Red</string>
+  <string name="drone_animation_leftredrightgreen">Left Red Right Green</string>
+  <string name="drone_animation_blinkstandard">Blink Standard</string>
+  <!-- Jumping Sumo Bricks -->
+  <string name="brick_jumping_sumo_move_forward">Bewege Jumping Sumo vorwärts</string>
+  <string name="brick_jumping_sumo_move_backward">Bewege Jumping Sumo rückwärts</string>
+  <string name="brick_jumping_sumo_percent_power">% Power</string>
+  <string name="brick_jumping_sumo_animation">Animationen Jumping Sumo</string>
+  <string name="brick_jumping_sumo_no_sound">Kein Jumping Sumo Klang</string>
+  <string name="brick_jumping_sumo_sound">Klang</string>
+  <string name="brick_jumping_sumo_jump_long">Sprung Jumping Sumo lang</string>
+  <string name="brick_jumping_sumo_jump_high">Sprung Jumping Sumo hoch</string>
+  <string name="brick_jumping_sumo_rotate_left">Drehe Jumping Sumo nach links</string>
+  <string name="brick_jumping_sumo_rotate_right">Drehe Jumping Sumo nach rechts</string>
+  <string name="brick_jumping_sumo_rotate_text">°</string>
+  <string name="brick_jumping_sumo_turn">Drehe Jumping Sumo</string>
+  <string name="brick_jumping_sumo_taking_picture">Fotoaufnahme Jumping Sumo</string>
+  <!--  -->
+  <!-- defaultJumpingSumoValues -->
+  <string name="default_jumping_sumo_project_name">Mein erstes Jumping Sumo Programm</string>
+  <string name="add_look_jumping_sumo_video">Jumping Sumo Video</string>
+  <string name="default_jumping_sumo_project_sprites_forward">Fliege nach vorne</string>
+  <string name="default_jumping_sumo_project_sprites_backward">Zurück</string>
+  <string name="default_jumping_sumo_project_sprites_animation">Animationen</string>
+  <string name="default_jumping_sumo_project_sprites_sound">Klang</string>
+  <string name="default_jumping_sumo_project_sprites_no_sound">Kein Klang</string>
+  <string name="default_jumping_sumo_project_sprites_jump_long">Sprung lang</string>
+  <string name="default_jumping_sumo_project_sprites_jump_high">Sprung hoch</string>
+  <string name="default_jumping_sumo_project_sprites_turn_left">Drehe links</string>
+  <string name="default_jumping_sumo_project_sprites_turn_right">Drehe rechts</string>
+  <string name="default_jumping_sumo_project_sprites_flip">Umdrehen</string>
+  <string name="default_jumping_sumo_project_sprites_picture">Foto aufnehmen</string>
+  <!--  -->
+  <!-- Jumping Sumo animation strings -->
+  <string name="animation_spin">Drehen</string>
+  <string name="animation_tab">Tippen</string>
+  <string name="animation_slowshake">Langsamslalom</string>
+  <string name="animation_metronome">Metronom</string>
+  <string name="animation_ondulation">Ondulation</string>
+  <string name="animation_spinjump">Drehsprung</string>
+  <string name="animation_spiral">Spirale</string>
+  <string name="animation_slalom">Slalom</string>
+  <!-- Jumping Sumo sound strings -->
+  <string name="jumping_sumo_volume">Lautstärke</string>
+  <string name="sound_default">Normal</string>
+  <string name="sound_robot">Roboter</string>
+  <string name="sound_insect">Insekt</string>
+  <string name="sound_monster">Monster</string>
   <!--  -->
   <!-- Phiro bricks -->
   <!-- motor -->
@@ -1141,7 +1298,7 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="formula_editor_function_arctan">arctan</string>
   <string name="formula_editor_function_arctan_parameter">(0)</string>
   <string name="formula_editor_function_exp">exp</string>
-  <string name="formula_editor_function_exp_parameter">(0)</string>
+  <string name="formula_editor_function_exp_parameter">(1)</string>
   <string name="formula_editor_function_power">Potenziere</string>
   <string name="formula_editor_function_power_parameter">(2,3)</string>
   <string name="formula_editor_function_floor">Abrunden</string>
@@ -1159,7 +1316,7 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="formula_editor_function_letter">Buchstabe</string>
   <string name="formula_editor_function_letter_parameter">(1,\'Hallo Welt\')</string>
   <string name="formula_editor_function_join">verbinde</string>
-  <string name="formula_editor_function_join_parameter">(\'Hallo\',\'Welt\')</string>
+  <string name="formula_editor_function_join_parameter">(\'hello\',\' world\')</string>
   <string name="formula_editor_function_arduino_read_pin_value_digital">arduino_digital_pin</string>
   <string name="formula_editor_function_arduino_read_pin_value_analog">arduino_analog_pin</string>
   <string name="formula_editor_function_raspi_read_pin_value_digital">raspberry_pi_pin</string>
@@ -1226,6 +1383,9 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="formula_editor_sensor_lego_ev3_sensor_color">EV3_Farbe</string>
   <string name="formula_editor_sensor_lego_ev3_sensor_color_ambient">EV3_Umgebungslicht</string>
   <string name="formula_editor_sensor_lego_ev3_sensor_color_reflected">EV3_Lichtreflexion</string>
+  <string name="formula_editor_sensor_lego_ev3_sensor_hitechnic_color">EV3_hitechnic_color</string>
+  <string name="formula_editor_sensor_lego_ev3_sensor_nxt_temperature_c">EV3_NXT_temperature_°C</string>
+  <string name="formula_editor_sensor_lego_ev3_sensor_nxt_temperature_f">EV3_NXT_temperature_°F</string>
   <string name="formula_editor_sensor_gamepad_a_pressed">gamepad_a_gedrückt</string>
   <string name="formula_editor_sensor_gamepad_b_pressed">gamepad_b_gedrückt</string>
   <string name="formula_editor_sensor_gamepad_up_pressed">gamepad_nach_oben_gedrückt</string>
@@ -1272,7 +1432,8 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="formula_editor_device_face_detection">Gesichtserkennung</string>
   <string name="formula_editor_device_date_and_time">Datum und Uhrzeit</string>
   <string name="formula_editor_device_touch_detection">Berührungserkennung</string>
-  <string name="formula_editor_device_lego">Lego</string>
+  <string name="formula_editor_device_lego_nxt">Lego NXT</string>
+  <string name="formula_editor_device_lego_ev3">LEGO EV3</string>
   <string name="formula_editor_device_arduino">Arduino</string>
   <string name="formula_editor_device_phiro">Phiro</string>
   <string name="formula_editor_device_raspberry">Raspberry Pi</string>
@@ -1347,9 +1508,9 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
         Smartphone oder Tablet aufzeichnet.\nZum Beispiel die Neigung deines Geräts oder die Lautstärke in deiner Umgebung. </string>
   <string name="formula_editor_intro_title_data">Daten</string>
   <string name="formula_editor_intro_summary_data">Hier findest du Variablen und Listen, welche in deinem Programm verwendet werden. \nDu kannst diese einfach in deine Formel einfügen. </string>
-  <plurals name="formula_editor_data_fragment_context_action_item_selected">
-    <item quantity="one">Element ausgewählt!</item>
-    <item quantity="other">Elemente ausgewählt!</item>
+  <plurals name="formula_editor_data_am_title">
+    <item quantity="one">%d Item selected</item>
+    <item quantity="other">%d Items selected</item>
   </plurals>
   <!--  -->
   <!-- New Data Dialog -->
@@ -1359,7 +1520,6 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="no_listname_entered">Bitte gib einen Listennamen an.</string>
   <!-- -->
   <!-- Brick Data Editor Strings -->
-  <string name="brick_data_editor_title">Bausteineditor</string>
   <string name="separator">|</string>
   <string name="add_text">Text hinzufügen</string>
   <string name="edit_text">Text bearbeiten</string>
@@ -1377,20 +1537,7 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="new_user_brick">Neuer Baustein</string>
   <string name="new_user_brick_variable">Variable 1</string>
   <string name="new_user_brick_name">Bitte wähle einen Benutzerbausteinnamen:</string>
-  <string name="recursive_user_brick_forbidden">Hinzufügen eines Userbricks in einem Userbrick ist noch nicht erlaubt!</string>
-  <!-- Merge strings -->
-  <string name="merge_button">Zusammenfügen mit</string>
-  <string name="name_merge_result">Name für Ergebnis eingeben</string>
-  <string name="merge_info">erfolgreich kopiert in</string>
-  <string name="warning">Warnung</string>
-  <string name="error_merge">Fehler beim Zusammenführen von Programmen</string>
-  <string name="error_merge_with_self_scene">Aktuelle Szene und ausgewählte Szene sind die gleichen!</string>
-  <string name="error_merge_scene_not_found">Szene nicht gefunden!</string>
-  <string name="error_different_resolutions" tools:ignore="PluralsCandidate">Vorsicht! Unterschiedliche Auflösungen erkannt. %1$s hat Auflösung %2$dx%3$d und %4$s hat Auflösung %5$dx%6$d. Auflösung von %1$s wird verwendet.</string>
-  <string name="abort">Abbruch</string>
-  <string name="merge_conflict">Zusammenfügen nicht möglich</string>
-  <string name="merge_conflict_variable">Die Variable %1$s wird in beiden Programmen benutzt. Wenn Programme Variablen mit den gleichen Namen beinhalten, können diese nicht zusammengefügt werden. Bitte benenne die Variable in einen der Programme um und versuche es erneut. </string>
-  <string name="merge_conflict_list">Die Liste %1$s wird in beiden Programmen benutzt. Wenn Programme Listen mit den gleichen Namen beinhalten, können diese nicht zusammengefügt werden. Bitte benenne die Liste in einen der Programme um und versuche es erneut. </string>
+  <!--  -->
   <!-- Camera related strings -->
   <string name="brick_video">Schalte Kamera</string>
   <string name="video_brick_camera_on">ein</string>
@@ -1448,7 +1595,6 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="hint_looks">Hier findest du die verschiedenen Aussehen von deinem Objekt. Mit dem \"+\" Symbol kannst du neue Aussehen hinzufügen.</string>
   <string name="hint_sounds">Hier kannst du neue Klänge zu deinem Objekt hinzufügen. Denke daran einen Brick aus der Klang-Kategorie zu verwenden.</string>
   <string name="hint_objects">Dein Programm besteht aus verschiedenen Objekten die miteinander interagieren. Um ein neues Objekt hinzuzufügen, tippe auf das \"+\" Symbol.</string>
-  <string name="hint_merge">Um zwei Programme zusammenzuführen, tippe lange auf ein Programm um das Menü zu öffnen und tippe auf \'Zusammenfügen mit\'.</string>
   <string name="hint_stage">Tippe auf den Zurück-Button um das Programm zu pausieren. Um Achsen und Bildschirmgröße deines Gerätes anzuzeigen, tippe auf \"Achsen ein\".</string>
   <string name="hint_scenes">Ein Programm kann aus verschiedenen unabhängigen Szenen bestehen. Um eine neue Szene hinzuzufügen, tippe auf \"+\" Symbol.</string>
   <!--  -->
@@ -1457,5 +1603,16 @@ Wir möchten dich daran erinnern, den Nutzungsbedingungen der Drohne sowie den N
   <string name="crash_dialog_text">Bitte hilf uns dabei Pocket Code zu verbessern indem du uns anonyme Absturzberichte sendest!</string>
   <string name="crash_dialog_always_send">Immer senden</string>
   <string name="crash_dialog_send">Senden</string>
+  <!--  -->
+  <!-- Multilingual List -->
+  <string name="device_language">Systemsprache</string>
+  <!-- UtilFile SizeUnits String -->
+  <string name="Byte_short">B</string>
+  <string name="KiloByte_short">KB</string>
+  <string name="MegaByte_short">MB</string>
+  <string name="GigaByte_short">GB</string>
+  <string name="TeraByte_short">TB</string>
+  <string name="PetaByte_short">PB</string>
+  <string name="ExaByte_short">EB</string>
   <!--  -->
 </resources>

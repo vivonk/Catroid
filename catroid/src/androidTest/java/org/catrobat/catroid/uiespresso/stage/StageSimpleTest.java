@@ -37,9 +37,9 @@ import org.catrobat.catroid.content.bricks.SetSizeToBrick;
 import org.catrobat.catroid.io.StorageHandler;
 import org.catrobat.catroid.stage.StageActivity;
 import org.catrobat.catroid.uiespresso.testsuites.Cat;
-import org.catrobat.catroid.uiespresso.util.BaseActivityInstrumentationRule;
 import org.catrobat.catroid.uiespresso.util.FileTestUtils;
 import org.catrobat.catroid.uiespresso.util.matchers.StageMatchers;
+import org.catrobat.catroid.uiespresso.util.rules.BaseActivityInstrumentationRule;
 import org.catrobat.catroid.utils.UtilUi;
 import org.junit.Before;
 import org.junit.Rule;
@@ -83,7 +83,7 @@ public class StageSimpleTest {
 		ScreenValues.SCREEN_HEIGHT = PROJECT_HEIGHT;
 		ScreenValues.SCREEN_WIDTH = PROJECT_WIDTH;
 
-		Project project = new Project(null, projectName);
+		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 
 		// blue Sprite
 		Sprite blueSprite = new SingleSprite("blueSprite");
@@ -91,9 +91,9 @@ public class StageSimpleTest {
 		LookData blueLookData = new LookData();
 		String blueImageName = "blue_image.bmp";
 
-		blueLookData.setLookName(blueImageName);
+		blueLookData.setName(blueImageName);
 
-		blueSprite.getLookDataList().add(blueLookData);
+		blueSprite.getLookList().add(blueLookData);
 
 		blueStartScript.addBrick(new PlaceAtBrick(0, 0));
 		blueStartScript.addBrick(new SetSizeToBrick(5000));
@@ -107,7 +107,7 @@ public class StageSimpleTest {
 				org.catrobat.catroid.test.R.raw.blue_image, InstrumentationRegistry.getContext(),
 				FileTestUtils.FileTypes.IMAGE);
 
-		blueLookData.setLookFilename(blueImageFile.getName());
+		blueLookData.setFileName(blueImageFile.getName());
 
 		StorageHandler.getInstance().saveProject(project);
 		ProjectManager.getInstance().setProject(project);

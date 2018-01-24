@@ -96,13 +96,13 @@ public class DefaultProjectCreatorDrone extends DefaultProjectCreator {
 		Sprite sprite = spriteFactory.newInstance(SingleSprite.class.getSimpleName(), backgroundName);
 
 		LookData backgroundLookData = new DroneVideoLookData();
-		backgroundLookData.setLookName(context.getString(R.string.add_look_drone_video));
-		backgroundLookData.setLookFilename(backgroundFile.getName());
-		sprite.getLookDataList().add(backgroundLookData);
+		backgroundLookData.setName(context.getString(R.string.add_look_drone_video));
+		backgroundLookData.setFileName(backgroundFile.getName());
+		sprite.getLookList().add(backgroundLookData);
 
 		Sprite backgroundSprite = defaultDroneProject.getDefaultScene().getSpriteList().get(0);
 
-		backgroundSprite.getLookDataList().add(backgroundLookData);
+		backgroundSprite.getLookList().add(backgroundLookData);
 		Script backgroundStartScript = new StartScript();
 
 		SetLookBrick setLookBrick = new SetLookBrick();
@@ -204,6 +204,16 @@ public class DefaultProjectCreatorDrone extends DefaultProjectCreator {
 		defaultDroneProject.getDefaultScene().addSprite(createDroneSprite(turnRightSpriteName,
 				DroneBrickFactory.DroneBricks.DRONE_TURN_RIGHT_BRICK, 100, 475, turnRightFile, 2000));
 
+		//Flip Sprite
+		String flipSpriteName = context.getString(R.string.default_drone_project_sprites_flip);
+
+		File flipFile = UtilFile.copyImageFromResourceIntoProject(projectName, sceneName, flipSpriteName
+						+ Constants.IMAGE_STANDARD_EXTENSION, R.drawable.default_drone_project_orange_flip, context,
+				true, backgroundImageScaleFactor);
+
+		defaultDroneProject.getDefaultScene().addSprite(createDroneSprite(flipSpriteName,
+				DroneBrickFactory.DroneBricks.DRONE_FLIP_BRICK, -280, 200, flipFile, 2000));
+
 		//Emergency Sprite
 		String emergencySpriteName = context.getString(R.string.default_drone_project_sprites_emergency);
 
@@ -251,7 +261,7 @@ public class DefaultProjectCreatorDrone extends DefaultProjectCreator {
 		whenProjectStartsScript.addBrick(turnLeftBrick);
 
 		LookData lookData = new LookData(spriteName + " icon", lookFile.getName());
-		sprite.getLookDataList().add(lookData);
+		sprite.getLookList().add(lookData);
 
 		sprite.addScript(whenSpriteTappedScript);
 		sprite.addScript(whenProjectStartsScript);

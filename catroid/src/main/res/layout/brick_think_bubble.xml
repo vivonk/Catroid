@@ -46,6 +46,7 @@
 
         <TextView
             android:id="@+id/brick_think_bubble_text_view"
+            android:labelFor="@+id/brick_think_bubble_edit_text"
             style="@style/BrickText.SingleLine"
             android:text="@string/brick_think_bubble" >
         </TextView >
@@ -57,7 +58,7 @@
             android:layout_gravity="center_vertical"
             app:layout_inputType="text"
             app:layout_textField="true"
-            android:gravity="left"
+            android:gravity="start"
             android:maxLines="3"
             android:minLines="1" />
     </org.catrobat.catroid.ui.BrickLayout >

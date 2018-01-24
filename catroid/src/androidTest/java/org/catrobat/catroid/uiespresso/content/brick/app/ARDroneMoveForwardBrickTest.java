@@ -27,12 +27,12 @@ import android.support.test.runner.AndroidJUnit4;
 
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.content.bricks.DroneMoveForwardBrick;
-import org.catrobat.catroid.ui.ScriptActivity;
+import org.catrobat.catroid.ui.SpriteActivity;
 import org.catrobat.catroid.uiespresso.annotations.Flaky;
 import org.catrobat.catroid.uiespresso.content.brick.utils.BrickTestUtils;
 import org.catrobat.catroid.uiespresso.testsuites.Cat;
 import org.catrobat.catroid.uiespresso.testsuites.Level;
-import org.catrobat.catroid.uiespresso.util.BaseActivityInstrumentationRule;
+import org.catrobat.catroid.uiespresso.util.rules.BaseActivityInstrumentationRule;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -46,8 +46,8 @@ public class ARDroneMoveForwardBrickTest {
 	private int brickPosition;
 
 	@Rule
-	public BaseActivityInstrumentationRule<ScriptActivity> baseActivityTestRule = new
-			BaseActivityInstrumentationRule<>(ScriptActivity.class, true, false);
+	public BaseActivityInstrumentationRule<SpriteActivity> baseActivityTestRule = new
+			BaseActivityInstrumentationRule<>(SpriteActivity.class, true, false);
 
 	@Before
 	public void setUp() throws Exception {
@@ -62,17 +62,17 @@ public class ARDroneMoveForwardBrickTest {
 	@Category({Cat.AppUi.class, Level.Smoke.class, Cat.Gadgets.class})
 	@Test
 	@Flaky
-	public void jumpingSumoRotateLeftTest() {
+	public void testARDroneMoveForwardBrick() {
 		int secondsValue = 3;
 		int powerValue = 40;
 
 		onBrickAtPosition(0).checkShowsText(R.string.brick_when_started);
-		onBrickAtPosition(brickPosition).checkShowsText("Move AR.Drone 2.0 forward");
+		onBrickAtPosition(brickPosition).checkShowsText(R.string.brick_drone_move_forward);
 
-		onBrickAtPosition(brickPosition).onFormulaTextField(R.id.brick_drone_move_edit_text_second)
+		onBrickAtPosition(brickPosition).onFormulaTextField(R.id.brick_drone_move_forward_edit_text_second)
 				.performEnterNumber(secondsValue)
 				.checkShowsNumber(secondsValue);
-		onBrickAtPosition(brickPosition).onFormulaTextField(R.id.brick_drone_move_edit_text_power)
+		onBrickAtPosition(brickPosition).onFormulaTextField(R.id.brick_drone_move_forward_edit_text_power)
 				.performEnterNumber(powerValue)
 				.checkShowsNumber(powerValue);
 	}

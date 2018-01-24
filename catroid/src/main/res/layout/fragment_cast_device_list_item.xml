@@ -29,8 +29,8 @@
     android:orientation="horizontal">
 
 	<TextView
-		android:layout_marginLeft="18dp"
-		android:drawableLeft="@drawable/ic_cast_white"
+		android:layout_marginStart="18dp"
+		android:drawableStart="@drawable/ic_cast_white"
 		android:drawablePadding="18dp"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
